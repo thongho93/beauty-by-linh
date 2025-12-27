@@ -1,8 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/layout/Header";
 
 export default function HomePage() {
   const nextSectionRef = useRef<HTMLElement | null>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Show sticky header when hero is mostly out of view
+        setShowStickyHeader(!entry.isIntersecting || entry.intersectionRatio < 0.15);
+      },
+      { root: null, threshold: [0, 0.15] },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToNextSlow = () => {
     const target = nextSectionRef.current;
@@ -34,7 +52,10 @@ export default function HomePage() {
 
   return (
     <main>
+      {showStickyHeader ? <Header mode="sticky" /> : null}
       <section
+        id="home"
+        ref={heroRef}
         className="relative min-h-screen overflow-hidden cursor-pointer"
         role="button"
         tabIndex={0}
@@ -48,24 +69,26 @@ export default function HomePage() {
         style={{
           backgroundImage: "url(/img/lashes-by-linh-1.jpg)",
           backgroundSize: "cover",
-          backgroundPosition: "95% 72%",
+          backgroundPosition: "95% 92%",
         }}
       >
         <div
-          className="absolute inset-0 scale-[0.99]"
+          className="absolute inset-0 scale-[1]"
           style={{
             backgroundImage: "url(/img/lashes-by-linh-1.jpg)",
             backgroundSize: "cover",
-            backgroundPosition: "95% 72%",
+            backgroundPosition: "95% 92%",
             transformOrigin: "center",
           }}
         />
         <div className="absolute inset-0 bg-black/65" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70" />
 
-        <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-          <Header />
-        </div>
+        {!showStickyHeader ? (
+          <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+            <Header mode="hero" />
+          </div>
+        ) : null}
 
         <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
           <div className="translate-y-16 md:translate-y-20">

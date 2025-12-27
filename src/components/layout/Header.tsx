@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 
+type HeaderMode = "hero" | "sticky";
+
 const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Hjem", href: "#home" },
   { label: "Tjenester", href: "#tjenester" },
@@ -10,7 +12,7 @@ const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Instagram", href: "https://instagram.com/", external: true },
 ];
 
-export default function Header() {
+export default function Header({ mode = "hero" }: { mode?: HeaderMode }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,8 +35,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="absolute left-0 right-0 top-0 z-20">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-8 py-4 lg:px-12">
+      <header
+        className={
+          mode === "sticky"
+            ? "fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-black/35 backdrop-blur-md"
+            : "absolute left-0 right-0 top-0 z-20"
+        }
+      >
+        <div className="relative mx-auto flex max-w-6xl items-center justify-between px-8 py-4 lg:px-12">
           <button
             type="button"
             className="relative grid h-11 w-11 cursor-pointer place-items-center border border-[color:var(--color-gold)] bg-black/20 text-[color:var(--color-gold)] transition-all duration-300 hover:bg-black/40 hover:shadow-[0_0_0_3px_rgba(200,169,106,0.18)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
@@ -57,6 +65,21 @@ export default function Header() {
               }`}
             />
           </button>
+
+          {mode === "sticky" ? (
+            <a
+              href="#home"
+              aria-label="Gå til toppen"
+              className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-center md:block"
+            >
+              <div className="text-[22px] tracking-[0.55em] text-white/90">
+                BEAUTY BY LINH
+              </div>
+              <div className="mt-1 text-[11px] tracking-[0.7em] text-white/55">
+                OSLO
+              </div>
+            </a>
+          ) : null}
 
           <Button
             href="https://timma.no/salong/lashes-by-linh"
