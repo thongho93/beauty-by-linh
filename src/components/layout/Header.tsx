@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <>
       <header className="absolute left-0 right-0 top-0 z-20">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-8 py-4 lg:px-12">
           <button
             type="button"
             className="relative grid h-11 w-11 cursor-pointer place-items-center border border-[color:var(--color-gold)] bg-black/20 text-[color:var(--color-gold)] transition-all duration-300 hover:bg-black/40 hover:shadow-[0_0_0_3px_rgba(200,169,106,0.18)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
