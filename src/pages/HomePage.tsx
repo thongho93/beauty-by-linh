@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "@/components/layout/Header";
+import BookingModal from "@/components/ui/BookingModal";
 
 export default function HomePage() {
   const nextSectionRef = useRef<HTMLElement | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const [showStickyHeader, setShowStickyHeader] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     const el = heroRef.current;
@@ -52,7 +54,8 @@ export default function HomePage() {
 
   return (
     <main>
-      {showStickyHeader ? <Header mode="sticky" /> : null}
+      {bookingOpen ? <BookingModal onClose={() => setBookingOpen(false)} /> : null}
+      {showStickyHeader ? <Header mode="sticky" onBookClick={() => setBookingOpen(true)} /> : null}
       <section
         id="home"
         ref={heroRef}
@@ -86,19 +89,31 @@ export default function HomePage() {
 
         {!showStickyHeader ? (
           <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-            <Header mode="hero" />
+            <Header mode="hero" onBookClick={() => setBookingOpen(true)} />
           </div>
         ) : null}
 
         <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
           <div className="translate-y-16 md:translate-y-20">
-            <div className="text-center text-white">
+            <div
+              className="text-center text-white"
+              onClick={(e) => e.stopPropagation()}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
               <div className="mx-auto mb-6 grid h-24 w-24 place-items-center border border-white/60">
                 <span className="text-4xl tracking-wide">B L</span>
               </div>
 
               <div className="text-3xl tracking-[0.3em]">BEAUTY BY LINH</div>
               <div className="mt-2 text-xs tracking-[0.5em] text-white/70">OSLO</div>
+
+              <button
+                type="button"
+                onClick={() => setBookingOpen(true)}
+                className="mt-10 border border-[color:var(--color-gold)] px-10 py-3 text-sm tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+              >
+                BESTILL TIME
+              </button>
             </div>
           </div>
         </div>

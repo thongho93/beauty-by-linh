@@ -3,6 +3,11 @@ import Button from "@/components/ui/Button";
 
 type HeaderMode = "hero" | "sticky";
 
+interface HeaderProps {
+  mode?: HeaderMode;
+  onBookClick?: () => void;
+}
+
 const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Hjem", href: "#home" },
   { label: "Tjenester", href: "#tjenester" },
@@ -12,7 +17,7 @@ const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Instagram", href: "https://instagram.com/", external: true },
 ];
 
-export default function Header({ mode = "hero" }: { mode?: HeaderMode }) {
+export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -45,7 +50,7 @@ export default function Header({ mode = "hero" }: { mode?: HeaderMode }) {
         <div className="relative mx-auto flex max-w-6xl items-center justify-between px-8 py-4 lg:px-12">
           <button
             type="button"
-            className="relative grid h-11 w-11 cursor-pointer place-items-center border border-[color:var(--color-gold)] bg-black/20 text-[color:var(--color-gold)] transition-all duration-300 hover:bg-black/40 hover:shadow-[0_0_0_3px_rgba(200,169,106,0.18)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+            className="relative grid h-11 w-11 cursor-pointer place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
@@ -81,12 +86,7 @@ export default function Header({ mode = "hero" }: { mode?: HeaderMode }) {
             </a>
           ) : null}
 
-          <Button
-            href="https://timma.no/salong/lashes-by-linh"
-            variant="gold"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Button variant="gold" onClick={onBookClick}>
             Bestill time
           </Button>
         </div>
@@ -115,7 +115,7 @@ export default function Header({ mode = "hero" }: { mode?: HeaderMode }) {
           <div className="relative flex h-full flex-col px-8 pb-10 pt-20">
             <button
               type="button"
-              className="absolute right-6 top-6 grid h-11 w-11 place-items-center border border-[color:var(--color-gold)] bg-black/20 text-[color:var(--color-gold)] transition-all duration-300 hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+              className="absolute right-6 top-6 grid h-11 w-11 place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
             >
