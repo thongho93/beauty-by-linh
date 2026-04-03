@@ -83,13 +83,13 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
             {/* Hamburger — tablet & mobile only */}
             <button
               type="button"
-              className="lg:hidden grid h-10 w-10 cursor-pointer place-items-center border border-[color:var(--color-gold)]/60 bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10"
+              className="lg:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
               aria-label={open ? "Lukk meny" : "Åpne meny"}
               onClick={() => setOpen((v) => !v)}
             >
-              <span className={`absolute h-[1.5px] w-5 bg-current transition-all duration-300 ${open ? "rotate-45" : "-translate-y-1.5"}`} />
-              <span className={`absolute h-[1.5px] w-5 bg-current transition-all duration-300 ${open ? "opacity-0" : ""}`} />
-              <span className={`absolute h-[1.5px] w-5 bg-current transition-all duration-300 ${open ? "-rotate-45" : "translate-y-1.5"}`} />
+              <span className={`block h-[1.5px] w-5 bg-current transition-all duration-300 origin-center ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
+              <span className={`block h-[1.5px] w-5 bg-current transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+              <span className={`block h-[1.5px] w-5 bg-current transition-all duration-300 origin-center ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
             </button>
           </div>
         </div>
