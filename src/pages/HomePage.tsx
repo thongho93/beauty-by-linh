@@ -1,15 +1,14 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/layout/Header";
 import BookingModal from "@/components/ui/BookingModal";
+import TjenesterSection from "@/components/sections/TjenesterSection";
 import GalleriSection from "@/components/sections/GalleriSection";
 
 export default function HomePage() {
-  const nextSectionRef = useRef<HTMLElement | null>(null);
-  const heroRef = useRef<HTMLElement | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const scrollToNextSlow = () => {
-    const target = nextSectionRef.current;
+    const target = document.getElementById("tjenester");
     if (!target) return;
 
     const startY = window.scrollY;
@@ -42,7 +41,6 @@ export default function HomePage() {
       <Header mode="sticky" onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
-        ref={heroRef}
         className="relative min-h-screen overflow-hidden cursor-pointer"
         role="button"
         tabIndex={0}
@@ -118,10 +116,7 @@ export default function HomePage() {
         </button>
       </section>
 
-      <section ref={nextSectionRef} className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="text-2xl">Neste seksjon</h2>
-        <p className="mt-2 text-neutral-600">Her kommer innholdet under hero.</p>
-      </section>
+      <TjenesterSection />
 
       <GalleriSection />
       <style>
