@@ -96,11 +96,30 @@ export default function Priser() {
                 definisjon.
               </p>
             </div>
+
+            {/* CTA buttons */}
+            <div className="mt-10 flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => setBookingOpen(true)}
+                className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+              >
+                Bestill time
+              </button>
+              <a
+                href="#prisoversikt"
+                className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
+              >
+                Se priser
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="px-5 pt-6 pb-16 sm:px-8 lg:px-10">
+      <section id="prisoversikt" className="px-5 pt-6 pb-16 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-[1200px] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {priceCategories.map((category) => (
             <article
@@ -134,22 +153,12 @@ export default function Priser() {
                     >
                       {item.name}
                     </span>
-                    <div className="flex shrink-0 items-center gap-2">
-                      <span
-                        className="text-sm text-[#d6c8bf]/80"
-                        style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
-                      >
-                        {item.price}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setBookingOpen(true)}
-                        className="rounded-tl-md rounded-tr-none rounded-bl-md rounded-br-md px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                        style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
-                      >
-                        Book
-                      </button>
-                    </div>
+                    <span
+                      className="shrink-0 text-sm text-[#d6c8bf]/80"
+                      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
+                    >
+                      {item.price}
+                    </span>
                   </div>
                 ))}
               </div>
