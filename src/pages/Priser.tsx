@@ -62,7 +62,7 @@ export default function Priser() {
       {bookingOpen && <BookingModal onClose={() => setBookingOpen(false)} />}
       <Header onBookClick={() => setBookingOpen(true)} />
 
-      <section className="relative isolate overflow-hidden min-h-[72vh]">
+      <section className="relative isolate overflow-hidden min-h-screen">
         <img
           src="/img/priser-hero.jpg"
           alt=""
@@ -74,7 +74,7 @@ export default function Priser() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
 
-        <div className="relative z-10 mx-auto flex min-h-[72vh] max-w-7xl items-center px-6 py-32 sm:px-10 lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-32 sm:px-10 lg:px-16">
           <div className="max-w-2xl">
             <h1
               className="max-w-xl text-5xl leading-[0.95] sm:text-6xl lg:text-7xl"
@@ -119,7 +119,7 @@ export default function Priser() {
         </div>
       </section>
 
-      <section id="prisoversikt" className="px-5 pt-6 pb-16 sm:px-8 lg:px-10">
+      <section id="prisoversikt" className="scroll-mt-24 px-5 pt-6 pb-16 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-[1200px] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {priceCategories.map((category) => (
             <article
