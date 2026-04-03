@@ -44,7 +44,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-10 w-10 items-center justify-center border border-[color:var(--color-gold)]/35 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-[color:var(--color-gold)] hover:border-[color:var(--color-gold)] hover:shadow-[0_0_0_3px_rgba(200,169,106,0.12)]"
+      className="inline-flex h-10 w-10 items-center justify-center border border-[color:var(--color-gold)]/35 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-[color:var(--color-gold)] hover:border-[color:var(--color-gold)] hover:shadow-[0_0_0_3px_rgba(183,132,113,0.12)]"
     >
       {children}
     </a>
@@ -100,7 +100,7 @@ export default function Footer() {
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center border border-[color:var(--color-gold)] bg-transparent px-6 py-3 text-sm tracking-[0.2em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_0_3px_rgba(200,169,106,0.12)] active:scale-[0.99]"
+                className="inline-flex items-center justify-center border border-[color:var(--color-gold)] bg-transparent px-6 py-3 text-sm tracking-[0.2em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_0_3px_rgba(183,132,113,0.12)] active:scale-[0.99]"
               >
                 Send <span className="ml-3 text-lg leading-none">→</span>
               </button>
@@ -152,7 +152,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-3 border-t border-white/10 py-6 text-sm text-white/55 md:flex-row md:items-center md:justify-between">
-          <div>© {new Date().getFullYear()} Beauty by Linh</div>
+          <div>© {new Date().getFullYear()} Lashes by Linh</div>
           <div className="flex items-center gap-6">
             <a href="#vilkar" className="transition-opacity hover:opacity-90">
               Vilkår

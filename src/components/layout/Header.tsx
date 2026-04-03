@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LashesLogo from "@/components/ui/LashesLogo";
 import Button from "@/components/ui/Button";
 
 type HeaderMode = "hero" | "sticky";
@@ -50,7 +51,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
         <div className="relative mx-auto flex max-w-6xl items-center justify-between px-8 py-4 lg:px-12">
           <button
             type="button"
-            className="relative grid h-11 w-11 cursor-pointer place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+            className="relative grid h-11 w-11 cursor-pointer place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
@@ -71,20 +72,20 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
             />
           </button>
 
-          {mode === "sticky" ? (
-            <a
-              href="#home"
-              aria-label="Gå til toppen"
-              className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-center md:block"
-            >
-              <div className="text-[22px] tracking-[0.55em] text-white/90">
-                BEAUTY BY LINH
+          <a
+            href="#home"
+            aria-label="Gå til toppen"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden sm:block"
+          >
+            {mode === "sticky" ? (
+              <div className="hidden text-center md:block">
+                <div className="text-[22px] tracking-[0.55em] text-white/90">LASHES BY LINH</div>
+                <div className="mt-1 text-[11px] tracking-[0.7em] text-white/55">OSLO</div>
               </div>
-              <div className="mt-1 text-[11px] tracking-[0.7em] text-white/55">
-                OSLO
-              </div>
-            </a>
-          ) : null}
+            ) : (
+              <LashesLogo className="h-14 w-14" />
+            )}
+          </a>
 
           <Button variant="gold" onClick={onBookClick}>
             Bestill time
@@ -115,7 +116,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
           <div className="relative flex h-full flex-col px-8 pb-10 pt-20">
             <button
               type="button"
-              className="absolute right-6 top-6 grid h-11 w-11 place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+              className="absolute right-6 top-6 grid h-11 w-11 place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
             >
@@ -154,7 +155,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
             </nav>
 
             <div className="mt-auto pt-10 text-sm tracking-[0.2em] opacity-70">
-              BEAUTY BY LINH
+              LASHES BY LINH
             </div>
           </div>
         </aside>
