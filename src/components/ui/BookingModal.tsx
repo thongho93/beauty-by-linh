@@ -34,7 +34,7 @@ export default function BookingModal({ onClose }: Props) {
         {/* Header bar */}
         <div className="flex items-center justify-between border-b border-[color:var(--color-gold)]/20 px-6 py-4">
           <span className="text-sm tracking-[0.3em] text-[color:var(--color-gold)]">
-            BESTILL TIME
+            Bestill time
           </span>
           <button
             type="button"
