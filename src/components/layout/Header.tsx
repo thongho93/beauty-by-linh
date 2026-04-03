@@ -73,7 +73,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
             <button
               type="button"
               onClick={onBookClick}
-              className="rounded-tl-2xl rounded-tr-none rounded-bl-2xl rounded-br-2xl px-5 py-2.5 text-[11px] font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_20px_rgba(183,132,113,0.4)] hover:scale-[1.03] active:scale-[0.98]"
+              className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-5 py-2.5 text-[11px] font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_20px_rgba(183,132,113,0.4)] hover:scale-[1.03] active:scale-[0.98]"
               style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
             >
               Bestill time
@@ -147,7 +147,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
               <button
                 type="button"
                 onClick={() => { setOpen(false); onBookClick?.(); }}
-                className="w-full rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-none py-3 text-[11px] font-bold tracking-[0.3em] text-white transition-all duration-300 hover:brightness-110"
+                className="w-full rounded-tl-lg rounded-tr-lg rounded-bl-lg rounded-br-none py-3 text-[11px] font-bold tracking-[0.3em] text-white transition-all duration-300 hover:brightness-110"
                 style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
               >
                 Bestill time
