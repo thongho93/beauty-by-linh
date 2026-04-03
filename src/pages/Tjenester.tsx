@@ -138,7 +138,7 @@ export default function Tjenester() {
                   <button
                     type="button"
                     onClick={() => setBookingOpen(true)}
-                    className="mt-6 flex items-center gap-1.5 text-sm font-bold transition-opacity duration-200 hover:opacity-70 w-fit text-[color:var(--color-gold)]"
+                    className="mt-6 flex items-center gap-1.5 text-sm font-bold transition-opacity duration-200 hover:opacity-70 hover:shadow-none w-fit text-[color:var(--color-gold)]"
                   >
                     Les mer <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </button>
