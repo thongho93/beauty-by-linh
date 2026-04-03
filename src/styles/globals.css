@@ -71,5 +71,9 @@
   button {
     letter-spacing: 0.2em;
     cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+  button:hover {
+    box-shadow: 0 0 20px rgba(183, 132, 113, 0.4);
   }
 }
