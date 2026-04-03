@@ -104,9 +104,10 @@ export default function Tjenester() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group flex flex-col overflow-hidden rounded-lg border border-white/8 bg-[#111] transition-all duration-300 hover:border-[color:var(--color-gold)]/30 hover:shadow-[0_0_24px_rgba(183,132,113,0.1)]"
+                className="group flex flex-col overflow-hidden rounded-2xl bg-[#1a1412] transition-all duration-300 hover:shadow-[0_0_32px_rgba(183,132,113,0.12)]"
               >
-                <div className="h-56 overflow-hidden">
+                {/* Image */}
+                <div className="h-64 overflow-hidden rounded-xl m-3">
                   <img
                     src={service.img}
                     alt={service.title}
@@ -115,38 +116,23 @@ export default function Tjenester() {
                   />
                 </div>
 
-                <div className="flex flex-1 flex-col px-6 py-6">
+                {/* Content */}
+                <div className="flex flex-1 flex-col px-6 pb-8 pt-4">
                   <h3
-                    className="text-lg font-semibold tracking-wide"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontWeight: 600,
-                      background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
+                    className="text-2xl font-bold text-white"
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
                     {service.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-white/55">
+                  <p className="mt-4 flex-1 text-base leading-7 text-white/75">
                     {service.description}
                   </p>
-                  <ul className="mt-4 space-y-1">
-                    {service.details.map((d) => (
-                      <li key={d} className="flex items-center gap-2 text-xs text-white/40">
-                        <span className="h-px w-3 bg-[color:var(--color-gold)]/40 shrink-0" />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
                   <button
                     type="button"
                     onClick={() => setBookingOpen(true)}
-                    className="mt-6 rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-5 py-2.5 text-xs font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                    style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+                    className="mt-6 flex items-center gap-1.5 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-70 w-fit"
                   >
-                    Bestill time
+                    Les mer <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </button>
                 </div>
               </div>
