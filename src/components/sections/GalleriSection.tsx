@@ -1,22 +1,21 @@
-import { useEffect } from "react";
+// Gallery images — replace src paths with your own photos.
+// Recommended: square images, min 600×600px.
+const galleryImages = [
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Vippeextensions", position: "center 20%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Vippeløft", position: "center 40%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Klassisk sett", position: "center 60%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Volum vipper", position: "center 30%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Mix/wispy", position: "center 50%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Farging", position: "center 70%" },
+];
 
 export default function GalleriSection() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = "https://w.behold.so/widget.js";
-    document.head.appendChild(script);
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
   return (
     <section id="galleri" className="pt-10 pb-24 px-4">
       <div className="mx-auto max-w-5xl">
 
         {/* Heading */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 text-center">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
           <h2 className="font-['Playfair_Display'] text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
             Galleri
@@ -35,9 +34,22 @@ export default function GalleriSection() {
           <div className="mx-auto mt-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
         </div>
 
-        {/* Behold Instagram widget */}
-        {/* @ts-expect-error – behold-widget is a custom HTML element */}
-        <behold-widget feed-id="HwdIqHyPiLk1quWWNn7s" />
+        {/* Photo grid */}
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
+          {galleryImages.map((img, i) => (
+            <div
+              key={i}
+              className="group aspect-square overflow-hidden"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ objectPosition: img.position }}
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Bottom link */}
         <div className="mt-10 text-center">
