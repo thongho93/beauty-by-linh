@@ -12,7 +12,7 @@ export default function GalleriSection() {
   }, []);
 
   return (
-    <section id="galleri" className="py-24 px-4">
+    <section id="galleri" className="pt-10 pb-24 px-4">
       <div className="mx-auto max-w-5xl">
 
         {/* Heading */}
