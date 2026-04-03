@@ -1,29 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/layout/Header";
+import BookingModal from "@/components/ui/BookingModal";
+import TjenesterSection from "@/components/sections/TjenesterSection";
+import GalleriSection from "@/components/sections/GalleriSection";
 
 export default function HomePage() {
-  const nextSectionRef = useRef<HTMLElement | null>(null);
-  const heroRef = useRef<HTMLElement | null>(null);
-  const [showStickyHeader, setShowStickyHeader] = useState(false);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Show sticky header when hero is mostly out of view
-        setShowStickyHeader(!entry.isIntersecting || entry.intersectionRatio < 0.15);
-      },
-      { root: null, threshold: [0, 0.15] },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const scrollToNextSlow = () => {
-    const target = nextSectionRef.current;
+    const target = document.getElementById("tjenester");
     if (!target) return;
 
     const startY = window.scrollY;
@@ -52,10 +37,10 @@ export default function HomePage() {
 
   return (
     <main>
-      {showStickyHeader ? <Header mode="sticky" /> : null}
+      {bookingOpen ? <BookingModal onClose={() => setBookingOpen(false)} /> : null}
+      <Header mode="sticky" onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
-        ref={heroRef}
         className="relative min-h-screen overflow-hidden cursor-pointer"
         role="button"
         tabIndex={0}
@@ -66,39 +51,49 @@ export default function HomePage() {
             scrollToNextSlow();
           }
         }}
-        style={{
-          backgroundImage: "url(/img/lashes-by-linh-1.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "95% 92%",
-        }}
       >
-        <div
-          className="absolute inset-0 scale-[1]"
+        <img
+          src="/img/lashes-by-linh-1.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover hero-img"
           style={{
-            backgroundImage: "url(/img/lashes-by-linh-1.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "95% 92%",
-            transformOrigin: "center",
+            objectPosition: "96% 60%",
+            transform: "scale(1.08) translateY(-5%)",
+            transformOrigin: "center center",
           }}
         />
-        <div className="absolute inset-0 bg-black/65" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
+        
 
-        {!showStickyHeader ? (
-          <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-            <Header mode="hero" />
-          </div>
-        ) : null}
 
-        <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-          <div className="translate-y-16 md:translate-y-20">
-            <div className="text-center text-white">
-              <div className="mx-auto mb-6 grid h-24 w-24 place-items-center border border-white/60">
-                <span className="text-4xl tracking-wide">B L</span>
+        <div className="relative z-10 flex min-h-screen items-end justify-center px-4 pb-24">
+          <div>
+            <div
+              className="text-center text-white"
+              onClick={(e) => e.stopPropagation()}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
+<div className="text-5xl sm:text-6xl lg:text-7xl tracking-[0.25em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
+              <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
+
+              <div className="mt-10 flex items-center justify-center gap-4">
+                <a
+                  href="#tjenester"
+                  className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-8 py-3.5 text-center text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                  style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
+                >
+                  Tjenester
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
+                  className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                  style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+                >
+                  Bestill time
+                </button>
               </div>
-
-              <div className="text-3xl tracking-[0.3em]">BEAUTY BY LINH</div>
-              <div className="mt-2 text-xs tracking-[0.5em] text-white/70">OSLO</div>
             </div>
           </div>
         </div>
@@ -121,12 +116,29 @@ export default function HomePage() {
         </button>
       </section>
 
-      <section ref={nextSectionRef} className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="text-2xl">Neste seksjon</h2>
-        <p className="mt-2 text-neutral-600">Her kommer innholdet under hero.</p>
-      </section>
+      <TjenesterSection />
+
+      <GalleriSection />
       <style>
         {`
+          @media (min-width: 640px) and (max-width: 1279px) {
+            .hero-img {
+              object-position: 58% 45% !important;
+              transform: scale(1.08) translateY(-5%) !important;
+            }
+          }
+          @media (min-width: 1280px) {
+            .hero-img {
+              object-position: 88% 60% !important;
+              transform: scale(1.08) translateY(-5%) !important;
+            }
+          }
+          @media (max-width: 639px) {
+            .hero-img {
+              object-position: 48% 55% !important;
+              transform: scale(1.08) translateY(-4%) !important;
+            }
+          }
           @keyframes floatY {
             0% { transform: translateY(0); }
             50% { transform: translateY(10px); }
