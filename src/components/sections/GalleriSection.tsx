@@ -3,10 +3,10 @@
 const galleryImages = [
   { src: "/img/instagram/A5515D00-80F9-4780-BC7A-402FED0D49ED.JPG", alt: "Vippeextensions", position: "center center" },
   { src: "/img/instagram/IMG_2526.JPG", alt: "Vippeløft", position: "center center" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Klassisk sett", position: "center 20%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Volum vipper", position: "center 40%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Mix/wispy", position: "center 60%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Farging av vipper", position: "center 50%" },
+  { src: "/img/instagram/IMG_1133.jpg", alt: "Klassisk sett", position: "center center" },
+  { src: "/img/instagram/IMG_2535.jpg", alt: "Volum vipper", position: "center center" },
+  { src: "/img/instagram/IMG_8417.jpg", alt: "Mix/wispy", position: "center center" },
+  { src: "/img/instagram/IMG_8496.jpg", alt: "Farging av vipper", position: "center center" },
 ];
 
 export default function GalleriSection() {
