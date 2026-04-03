@@ -9,12 +9,12 @@ interface HeaderProps {
 }
 
 const navItems: Array<{ label: string; href: string; external?: boolean }> = [
-  { label: "Hjem", href: "#home" },
-  { label: "Tjenester", href: "#tjenester" },
-  { label: "Galleri", href: "#galleri" },
-  { label: "Priser", href: "#priser" },
-  { label: "Om", href: "#om" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Hjem", href: "/#home" },
+  { label: "Tjenester", href: "/#tjenester" },
+  { label: "Galleri", href: "/#galleri" },
+  { label: "Priser", href: "/priser" },
+  { label: "Om", href: "/#om" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
@@ -41,7 +41,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
 
           {/* LEFT — Logo */}
-          <a href="#home" aria-label="Gå til toppen" className="shrink-0">
+          <a href="/#home" aria-label="Gå til toppen" className="shrink-0">
             <LashesLogo className="h-14 w-14 drop-shadow-[0_0_8px_rgba(183,132,113,0.4)]" />
           </a>
 

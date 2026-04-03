@@ -58,12 +58,12 @@ export default function HomePage() {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover hero-img"
           style={{
-            objectPosition: "90% 60%",
-            transform: "scale(1.25) translateY(-12%)",
+            objectPosition: "96% 60%",
+            transform: "scale(1.08) translateY(-5%)",
             transformOrigin: "center center",
           }}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
         
 
 
@@ -74,7 +74,7 @@ export default function HomePage() {
               onClick={(e) => e.stopPropagation()}
               onKeyDown={(e) => e.stopPropagation()}
             >
-<div className="text-4xl sm:text-5xl lg:text-6xl tracking-[0.35em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
+<div className="text-5xl sm:text-6xl lg:text-7xl tracking-[0.25em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
               <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
 
               <div className="mt-10 flex items-center justify-center gap-4">
@@ -123,20 +123,20 @@ export default function HomePage() {
         {`
           @media (min-width: 640px) and (max-width: 1279px) {
             .hero-img {
-              object-position: 44% 45% !important;
-              transform: scale(1.25) translateY(-12%) !important;
+              object-position: 58% 45% !important;
+              transform: scale(1.08) translateY(-5%) !important;
             }
           }
           @media (min-width: 1280px) {
             .hero-img {
-              object-position: 75% 60% !important;
-              transform: scale(1.25) translateY(-12%) !important;
+              object-position: 88% 60% !important;
+              transform: scale(1.08) translateY(-5%) !important;
             }
           }
           @media (max-width: 639px) {
             .hero-img {
-              object-position: 35% 55% !important;
-              transform: scale(1.15) translateY(-7%) !important;
+              object-position: 48% 55% !important;
+              transform: scale(1.08) translateY(-4%) !important;
             }
           }
           @keyframes floatY {
