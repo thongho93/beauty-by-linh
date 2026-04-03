@@ -143,15 +143,6 @@ export default function Priser() {
 
                 {isExpanded && (
                   <div className="border-t border-white/10 px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
-                    <div
-                      className="mb-5 rounded-lg px-3 py-2 sm:px-4"
-                      style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
-                    >
-                      <p className="text-base font-semibold text-white sm:text-lg">
-                        {category.label}
-                      </p>
-                    </div>
-
                     {category.items.length > 0 ? (
                       <div className="divide-y divide-white/10">
                         {category.items.map((item) => (
