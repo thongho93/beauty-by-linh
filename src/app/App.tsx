@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import HomePage from "@/pages/HomePage";
 import Priser from "@/pages/Priser";
+import Tjenester from "@/pages/Tjenester";
 import Footer from "@/components/layout/Footer";
 
 function ScrollToHash() {
@@ -36,6 +37,15 @@ export default function App() {
           element={
             <>
               <HomePage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/tjenester"
+          element={
+            <>
+              <Tjenester />
               <Footer />
             </>
           }

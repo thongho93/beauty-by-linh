@@ -10,7 +10,7 @@ interface HeaderProps {
 
 const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Hjem", href: "/#home" },
-  { label: "Tjenester", href: "/#tjenester" },
+  { label: "Tjenester", href: "/tjenester" },
   { label: "Galleri", href: "/#galleri" },
   { label: "Priser", href: "/priser" },
   { label: "Om", href: "/#om" },
