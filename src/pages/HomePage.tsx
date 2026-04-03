@@ -41,7 +41,7 @@ export default function HomePage() {
       <Header mode="sticky" onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
-        className="relative min-h-screen overflow-hidden cursor-pointer"
+        className="relative overflow-hidden cursor-pointer" style={{ minHeight: "100svh" }}
         role="button"
         tabIndex={0}
         onClick={() => scrollToNextSlow()}
@@ -67,7 +67,7 @@ export default function HomePage() {
         
 
 
-        <div className="relative z-10 flex min-h-screen items-end justify-center px-4 pb-24">
+        <div className="relative z-10 flex items-end justify-center px-4 pb-12 sm:pb-24" style={{ minHeight: "100svh" }}>
           <div>
             <div
               className="text-center text-white"
