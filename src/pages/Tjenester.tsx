@@ -61,7 +61,10 @@ export default function Tjenester() {
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 600,
-                textShadow: "0 4px 24px rgba(0,0,0,0.35)",
+                background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
               Vipper og bryn
@@ -77,23 +80,6 @@ export default function Tjenester() {
               </p>
             </div>
 
-            <div className="mt-10 flex items-center gap-4">
-              <button
-                type="button"
-                onClick={() => setBookingOpen(true)}
-                className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
-              >
-                Bestill time
-              </button>
-              <a
-                href="#tjenester-oversikt"
-                className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
-              >
-                Se tjenester
-              </a>
-            </div>
           </div>
         </div>
       </section>
