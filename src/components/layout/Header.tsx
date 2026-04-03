@@ -118,7 +118,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
               <LashesLogo className="h-12 w-12" />
               <button
                 type="button"
-                className="grid h-10 w-10 place-items-center border border-[color:var(--color-gold)]/40 text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10"
+                className="grid h-10 w-10 place-items-center bg-transparent text-[color:var(--color-gold)] transition-opacity duration-300 hover:opacity-70 hover:shadow-none"
                 aria-label="Lukk meny"
                 onClick={() => setOpen(false)}
               >
