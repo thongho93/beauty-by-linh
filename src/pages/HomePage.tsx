@@ -82,7 +82,7 @@ export default function HomePage() {
               <div className="mt-10 flex items-center justify-center gap-4">
                 <a
                   href="#tjenester"
-                  className="w-44 rounded-tl-2xl rounded-tr-none rounded-bl-2xl rounded-br-2xl px-6 py-4 text-center text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                  className="rounded-tl-2xl rounded-tr-none rounded-bl-2xl rounded-br-2xl px-8 py-3.5 text-center text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
                   style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
                 >
                   Tjenester
@@ -90,7 +90,7 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => setBookingOpen(true)}
-                  className="w-44 rounded-tl-2xl rounded-tr-2xl rounded-bl-none rounded-br-2xl px-6 py-4 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                  className="rounded-tl-2xl rounded-tr-2xl rounded-bl-none rounded-br-2xl px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
                   style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
                 >
                   Bestill time
