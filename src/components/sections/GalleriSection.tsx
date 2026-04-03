@@ -1,12 +1,12 @@
-// Gallery images — replace src paths with your own photos.
-// Recommended: square images, min 600×600px.
+// Gallery images — add more by dropping photos into /public/img/instagram/
+// Note: HEIC files need to be converted to JPG to display in browsers.
 const galleryImages = [
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Vippeextensions", position: "center 20%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Vippeløft", position: "center 40%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Klassisk sett", position: "center 60%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Volum vipper", position: "center 30%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Mix/wispy", position: "center 50%" },
-  { src: "/img/lashes-by-linh-1.jpg", alt: "Farging", position: "center 70%" },
+  { src: "/img/instagram/A5515D00-80F9-4780-BC7A-402FED0D49ED.JPG", alt: "Vippeextensions", position: "center center" },
+  { src: "/img/instagram/IMG_2526.JPG", alt: "Vippeløft", position: "center center" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Klassisk sett", position: "center 20%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Volum vipper", position: "center 40%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Mix/wispy", position: "center 60%" },
+  { src: "/img/lashes-by-linh-1.jpg", alt: "Farging av vipper", position: "center 50%" },
 ];
 
 export default function GalleriSection() {
