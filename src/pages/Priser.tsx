@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 
@@ -55,7 +54,6 @@ const priceCategories: PriceCategory[] = [
 ];
 
 export default function Priser() {
-  const [expandedId, setExpandedId] = useState<string>("vipperextensions-nytt-sett");
 
   return (
     <main className="min-h-screen text-white">
@@ -99,99 +97,60 @@ export default function Priser() {
         </div>
       </section>
 
-      <section className="px-5 pt-8 pb-16 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-[1100px] space-y-3">
-          {priceCategories.map((category) => {
-            const isExpanded = expandedId === category.id;
-
-            return (
-              <article
-                key={category.id}
-                className="overflow-hidden rounded-[22px] border border-white/10 bg-black/65 backdrop-blur-[2px]"
-              >
-                <button
-                  type="button"
-                  onClick={() => setExpandedId(isExpanded ? "" : category.id)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition hover:bg-white/[0.02] sm:px-6 sm:py-6"
-                  aria-expanded={isExpanded}
+      <section className="px-5 pt-6 pb-16 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1200px] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {priceCategories.map((category) => (
+            <article
+              key={category.id}
+              className="flex flex-col overflow-hidden rounded-xl border border-white/10 bg-black/65 backdrop-blur-[2px]"
+            >
+              {/* Category title */}
+              <div className="border-b border-white/10 px-4 py-4">
+                <h2
+                  className="text-lg font-semibold leading-tight tracking-[0.01em]"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
                 >
-                  <h2
-                    className="text-xl sm:text-2xl lg:text-[2.2rem] tracking-[0.01em]"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontWeight: 600,
-                      background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    {category.title}
-                  </h2>
+                  {category.title}
+                </h2>
+              </div>
 
-                  <span
-                    className="text-xl sm:text-2xl shrink-0"
-                    aria-hidden="true"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "#B78471",
-                    }}
-                  >
-                    {isExpanded ? "←" : "→"}
-                  </span>
-                </button>
-
-                {isExpanded && (
-                  <div className="border-t border-white/10 px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
-                    {category.items.length > 0 ? (
-                      <div className="divide-y divide-white/10">
-                        {category.items.map((item) => (
-                          <div
-                            key={item.name}
-                            className="flex flex-col gap-2 py-3 md:flex-row md:items-center md:justify-between md:gap-4"
-                          >
-                            <h3
-                              className="max-w-4xl text-lg leading-tight text-[#d6c8bf] sm:text-xl"
-                              style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 600,
-                              }}
-                            >
-                              {item.name}
-                            </h3>
-
-                            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
-                              <span
-                                className="min-w-[90px] text-left text-lg text-[#d6c8bf] sm:text-right sm:text-xl"
-                                style={{
-                                  fontFamily: "'Cormorant Garamond', serif",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                {item.price}
-                              </span>
-
-                              <Link
-                                to="/#kontakt"
-                                className="inline-flex min-w-[120px] items-center justify-center rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                                style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
-                              >
-                                Book time
-                              </Link>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="py-6 text-lg text-white/65 sm:text-xl">
-                        Prisliste kommer snart.
-                      </p>
-                    )}
+              {/* Price rows */}
+              <div className="flex flex-1 flex-col divide-y divide-white/8 px-4">
+                {category.items.map((item) => (
+                  <div key={item.name} className="flex items-center justify-between gap-3 py-3">
+                    <span
+                      className="text-sm leading-snug text-[#d6c8bf]"
+                      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
+                    >
+                      {item.name}
+                    </span>
+                    <div className="flex shrink-0 items-center gap-2">
+                      <span
+                        className="text-sm text-[#d6c8bf]/80"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
+                      >
+                        {item.price}
+                      </span>
+                      <Link
+                        to="/#kontakt"
+                        className="rounded-tl-md rounded-tr-none rounded-bl-md rounded-br-md px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                        style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+                      >
+                        Book
+                      </Link>
+                    </div>
                   </div>
-                )}
-              </article>
-            );
-          })}
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </main>
