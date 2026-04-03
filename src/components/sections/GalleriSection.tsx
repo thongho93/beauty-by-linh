@@ -35,6 +35,7 @@ export default function GalleriSection() {
         </div>
 
         {/* Photo grid */}
+        <div className="mx-auto w-full max-w-sm sm:max-w-md lg:max-w-xl">
         <div className="grid grid-cols-3 gap-[3px]">
           {galleryImages.map((img, i) => (
             <a
@@ -58,6 +59,7 @@ export default function GalleriSection() {
               </div>
             </a>
           ))}
+        </div>
         </div>
 
         {/* Bottom link */}
