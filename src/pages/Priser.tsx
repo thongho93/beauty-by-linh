@@ -129,7 +129,7 @@ export default function Priser() {
               {/* Category title */}
               <div className="border-b border-white/10 px-4 py-4">
                 <h2
-                  className="text-lg font-semibold leading-tight tracking-[0.01em]"
+                  className="text-2xl font-semibold leading-tight tracking-[0.01em]"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 600,
