@@ -65,6 +65,8 @@ export default function Tjenester() {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                display: "inline-block",
+                paddingBottom: "0.15em",
               }}
             >
               Vipper og bryn
