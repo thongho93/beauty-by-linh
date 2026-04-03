@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "@/components/layout/Header";
 import BookingModal from "@/components/ui/BookingModal";
+import GalleriSection from "@/components/sections/GalleriSection";
 
 export default function HomePage() {
   const nextSectionRef = useRef<HTMLElement | null>(null);
@@ -69,23 +70,21 @@ export default function HomePage() {
             scrollToNextSlow();
           }
         }}
-        style={{
-          backgroundImage: "url(/img/lashes-by-linh-1.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "95% 92%",
-        }}
       >
-        <div
-          className="absolute inset-0 scale-[1]"
+        <img
+          src="/img/lashes-by-linh-1.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover hero-img"
           style={{
-            backgroundImage: "url(/img/lashes-by-linh-1.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "95% 92%",
-            transformOrigin: "center",
+            objectPosition: "90% 60%",
+            transform: "scale(1.25) translateY(-12%)",
+            transformOrigin: "center center",
           }}
         />
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70" />
+        
 
         {!showStickyHeader ? (
           <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
@@ -100,17 +99,13 @@ export default function HomePage() {
               onClick={(e) => e.stopPropagation()}
               onKeyDown={(e) => e.stopPropagation()}
             >
-              <div className="mx-auto mb-6 grid h-24 w-24 place-items-center border border-white/60">
-                <span className="text-4xl tracking-wide">B L</span>
-              </div>
-
-              <div className="text-3xl tracking-[0.3em]">BEAUTY BY LINH</div>
-              <div className="mt-2 text-xs tracking-[0.5em] text-white/70">OSLO</div>
+<div className="text-4xl sm:text-5xl lg:text-6xl tracking-[0.35em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
+              <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
 
               <button
                 type="button"
                 onClick={() => setBookingOpen(true)}
-                className="mt-10 border border-[color:var(--color-gold)] px-10 py-3 text-sm tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+                className="mt-10 border border-[color:var(--color-gold)] px-10 py-3 text-sm tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
               >
                 BESTILL TIME
               </button>
@@ -140,8 +135,28 @@ export default function HomePage() {
         <h2 className="text-2xl">Neste seksjon</h2>
         <p className="mt-2 text-neutral-600">Her kommer innholdet under hero.</p>
       </section>
+
+      <GalleriSection />
       <style>
         {`
+          @media (min-width: 640px) and (max-width: 1279px) {
+            .hero-img {
+              object-position: 44% 60% !important;
+              transform: scale(1.25) translateY(-22%) !important;
+            }
+          }
+          @media (min-width: 1280px) {
+            .hero-img {
+              object-position: 75% 60% !important;
+              transform: scale(1.06) translateY(-12%) !important;
+            }
+          }
+          @media (max-width: 639px) {
+            .hero-img {
+              object-position: 35% 75% !important;
+              transform: scale(1.15) translateY(-22%) !important;
+            }
+          }
           @keyframes floatY {
             0% { transform: translateY(0); }
             50% { transform: translateY(10px); }

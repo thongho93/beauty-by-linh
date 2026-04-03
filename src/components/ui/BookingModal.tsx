@@ -40,7 +40,7 @@ export default function BookingModal({ onClose }: Props) {
             type="button"
             aria-label="Lukk booking"
             onClick={onClose}
-            className="grid h-11 w-11 place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(200,169,106,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
+            className="grid h-11 w-11 place-items-center border border-[color:var(--color-gold)] bg-transparent text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
           >
             <span className="absolute h-[1.5px] w-4 rotate-45 bg-current" />
             <span className="absolute h-[1.5px] w-4 -rotate-45 bg-current" />
