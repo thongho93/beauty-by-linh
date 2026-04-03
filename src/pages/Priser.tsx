@@ -143,7 +143,10 @@ export default function Priser() {
 
                 {isExpanded && (
                   <div className="border-t border-white/10 px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
-                    <div className="mb-5 rounded-lg bg-[#9b816c] px-3 py-2 sm:px-4">
+                    <div
+                      className="mb-5 rounded-lg px-3 py-2 sm:px-4"
+                      style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+                    >
                       <p className="text-base font-semibold text-white sm:text-lg">
                         {category.label}
                       </p>
@@ -179,7 +182,8 @@ export default function Priser() {
 
                               <Link
                                 to="/#kontakt"
-                                className="inline-flex min-w-[120px] items-center justify-center rounded-lg bg-[#9b816c] px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
+                                className="inline-flex min-w-[120px] items-center justify-center rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                                style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
                               >
                                 Book time
                               </Link>
