@@ -104,7 +104,7 @@ export default function Tjenester() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-[#1a1412] transition-all duration-300 hover:shadow-[0_0_32px_rgba(183,132,113,0.12)]"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/20 bg-[#1a1412] transition-all duration-300 hover:border-[color:var(--color-gold)]/50 hover:shadow-[0_0_32px_rgba(183,132,113,0.2)]"
               >
                 {/* Image */}
                 <div className="h-64 overflow-hidden rounded-xl m-3">
@@ -119,8 +119,16 @@ export default function Tjenester() {
                 {/* Content */}
                 <div className="flex flex-1 flex-col px-6 pb-8 pt-4">
                   <h3
-                    className="text-2xl font-bold text-white"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    className="text-2xl font-bold"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      display: "inline-block",
+                      paddingBottom: "0.1em",
+                    }}
                   >
                     {service.title}
                   </h3>
@@ -130,7 +138,7 @@ export default function Tjenester() {
                   <button
                     type="button"
                     onClick={() => setBookingOpen(true)}
-                    className="mt-6 flex items-center gap-1.5 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-70 w-fit"
+                    className="mt-6 flex items-center gap-1.5 text-sm font-bold transition-opacity duration-200 hover:opacity-70 w-fit text-[color:var(--color-gold)]"
                   >
                     Les mer <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </button>
