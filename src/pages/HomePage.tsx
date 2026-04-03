@@ -1,32 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/layout/Header";
 import BookingModal from "@/components/ui/BookingModal";
+import TjenesterSection from "@/components/sections/TjenesterSection";
 import GalleriSection from "@/components/sections/GalleriSection";
 
 export default function HomePage() {
-  const nextSectionRef = useRef<HTMLElement | null>(null);
-  const heroRef = useRef<HTMLElement | null>(null);
-  const [showStickyHeader, setShowStickyHeader] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Show sticky header when hero is mostly out of view
-        setShowStickyHeader(!entry.isIntersecting || entry.intersectionRatio < 0.15);
-      },
-      { root: null, threshold: [0, 0.15] },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   const scrollToNextSlow = () => {
-    const target = nextSectionRef.current;
+    const target = document.getElementById("tjenester");
     if (!target) return;
 
     const startY = window.scrollY;
@@ -56,10 +38,9 @@ export default function HomePage() {
   return (
     <main>
       {bookingOpen ? <BookingModal onClose={() => setBookingOpen(false)} /> : null}
-      {showStickyHeader ? <Header mode="sticky" onBookClick={() => setBookingOpen(true)} /> : null}
+      <Header mode="sticky" onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
-        ref={heroRef}
         className="relative min-h-screen overflow-hidden cursor-pointer"
         role="button"
         tabIndex={0}
@@ -77,38 +58,42 @@ export default function HomePage() {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover hero-img"
           style={{
-            objectPosition: "90% 60%",
-            transform: "scale(1.25) translateY(-12%)",
+            objectPosition: "96% 60%",
+            transform: "scale(1.08) translateY(-5%)",
             transformOrigin: "center center",
           }}
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
         
 
-        {!showStickyHeader ? (
-          <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-            <Header mode="hero" onBookClick={() => setBookingOpen(true)} />
-          </div>
-        ) : null}
 
-        <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-          <div className="translate-y-16 md:translate-y-20">
+        <div className="relative z-10 flex min-h-screen items-end justify-center px-4 pb-24">
+          <div>
             <div
               className="text-center text-white"
               onClick={(e) => e.stopPropagation()}
               onKeyDown={(e) => e.stopPropagation()}
             >
-<div className="text-4xl sm:text-5xl lg:text-6xl tracking-[0.35em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
+<div className="text-5xl sm:text-6xl lg:text-7xl tracking-[0.25em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
               <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
 
-              <button
-                type="button"
-                onClick={() => setBookingOpen(true)}
-                className="mt-10 border border-[color:var(--color-gold)] px-10 py-3 text-sm tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/40"
-              >
-                BESTILL TIME
-              </button>
+              <div className="mt-10 flex items-center justify-center gap-4">
+                <a
+                  href="#tjenester"
+                  className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-8 py-3.5 text-center text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                  style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
+                >
+                  Tjenester
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
+                  className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
+                  style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+                >
+                  Bestill time
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -131,30 +116,27 @@ export default function HomePage() {
         </button>
       </section>
 
-      <section ref={nextSectionRef} className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="text-2xl">Neste seksjon</h2>
-        <p className="mt-2 text-neutral-600">Her kommer innholdet under hero.</p>
-      </section>
+      <TjenesterSection />
 
       <GalleriSection />
       <style>
         {`
           @media (min-width: 640px) and (max-width: 1279px) {
             .hero-img {
-              object-position: 44% 60% !important;
-              transform: scale(1.25) translateY(-22%) !important;
+              object-position: 58% 45% !important;
+              transform: scale(1.08) translateY(-5%) !important;
             }
           }
           @media (min-width: 1280px) {
             .hero-img {
-              object-position: 75% 60% !important;
-              transform: scale(1.06) translateY(-12%) !important;
+              object-position: 88% 60% !important;
+              transform: scale(1.08) translateY(-5%) !important;
             }
           }
           @media (max-width: 639px) {
             .hero-img {
-              object-position: 35% 75% !important;
-              transform: scale(1.15) translateY(-22%) !important;
+              object-position: 48% 55% !important;
+              transform: scale(1.08) translateY(-4%) !important;
             }
           }
           @keyframes floatY {

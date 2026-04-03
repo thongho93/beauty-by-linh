@@ -14,9 +14,19 @@ export default function BookingModal({ onClose }: Props) {
     };
     window.addEventListener("keydown", onKeyDown);
 
+    // Load iframeResizer script
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/2.8.3/iframeResizer.min.js";
+    script.onload = () => {
+      // @ts-expect-error iFrameResize is loaded globally
+      if (typeof iFrameResize === "function") iFrameResize({ checkOrigin: false }, "#reservationIframe65851");
+    };
+    document.body.appendChild(script);
+
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      document.body.removeChild(script);
     };
   }, [onClose]);
 
@@ -34,7 +44,7 @@ export default function BookingModal({ onClose }: Props) {
         {/* Header bar */}
         <div className="flex items-center justify-between border-b border-[color:var(--color-gold)]/20 px-6 py-4">
           <span className="text-sm tracking-[0.3em] text-[color:var(--color-gold)]">
-            BESTILL TIME
+            Bestill time
           </span>
           <button
             type="button"
@@ -49,7 +59,8 @@ export default function BookingModal({ onClose }: Props) {
 
         {/* Iframe */}
         <iframe
-          src="https://bestill.timma.no/lashesbylinh"
+          id="reservationIframe65851"
+          src="https://bestill.timma.no/reservation/lashesbylinh"
           title="Book a lash appointment"
           width="100%"
           className="flex-1 min-h-0"
