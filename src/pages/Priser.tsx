@@ -87,7 +87,7 @@ export default function Priser() {
             </h1>
 
             <div className="mt-8 flex max-w-xl gap-4">
-              <div className="mt-2 h-px w-10 shrink-0 bg-white/60" />
+              <div className="mt-2 h-px w-10 shrink-0 bg-[color:var(--color-gold)]/70" />
               <p className="text-base leading-8 text-white/85 sm:text-lg">
                 Her finner du en oversikt over prisene på våre behandlinger innen
                 vippeextensions og vippeløft. Velg behandlingen som passer best
@@ -120,15 +120,22 @@ export default function Priser() {
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 600,
+                      background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
                     }}
                   >
                     {category.title}
                   </h2>
 
                   <span
-                    className="text-xl text-white/60 sm:text-2xl"
+                    className="text-xl sm:text-2xl shrink-0"
                     aria-hidden="true"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "#B78471",
+                    }}
                   >
                     {isExpanded ? "←" : "→"}
                   </span>
