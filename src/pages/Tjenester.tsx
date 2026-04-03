@@ -75,10 +75,10 @@ export default function Tjenester() {
             <div className="mt-8 flex max-w-xl gap-4">
               <div className="mt-2 h-px w-10 shrink-0 bg-[color:var(--color-gold)]/70" />
               <p className="text-base leading-8 text-white/85 sm:text-lg">
-                Fremhev ditt naturlige utseende med våre behandlinger for vipper
-                og bryn! Vi tilbyr alt fra forming og farging til
-                vippeextensions, slik at du får perfekte rammer for øynene.
-                Skreddersydd for å fremheve din unike skjønnhet.
+                Fremhev blikket ditt med profesjonelle vippebehandlinger
+                skreddersydd for deg. Vi spesialiserer oss på vippeextensions
+                og vippeløft – for et naturlig, fyldige eller dramatisk resultat
+                som varer.
               </p>
             </div>
 
