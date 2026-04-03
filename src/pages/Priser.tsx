@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import Header from "@/components/layout/Header";
+import BookingModal from "@/components/ui/BookingModal";
 
 type PriceItem = {
   name: string;
@@ -54,10 +55,12 @@ const priceCategories: PriceCategory[] = [
 ];
 
 export default function Priser() {
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <main className="min-h-screen text-white">
-      <Header />
+      {bookingOpen && <BookingModal onClose={() => setBookingOpen(false)} />}
+      <Header onBookClick={() => setBookingOpen(true)} />
 
       <section className="relative isolate overflow-hidden min-h-[72vh]">
         <img
@@ -138,13 +141,14 @@ export default function Priser() {
                       >
                         {item.price}
                       </span>
-                      <Link
-                        to="/#kontakt"
+                      <button
+                        type="button"
+                        onClick={() => setBookingOpen(true)}
                         className="rounded-tl-md rounded-tr-none rounded-bl-md rounded-br-md px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
                         style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
                       >
                         Book
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 ))}
