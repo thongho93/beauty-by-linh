@@ -64,15 +64,16 @@ export default function Tjenester() {
                 textShadow: "0 4px 24px rgba(0,0,0,0.35)",
               }}
             >
-              Våre tjenester
+              Vipper og bryn
             </h1>
 
             <div className="mt-8 flex max-w-xl gap-4">
               <div className="mt-2 h-px w-10 shrink-0 bg-[color:var(--color-gold)]/70" />
               <p className="text-base leading-8 text-white/85 sm:text-lg">
-                Vi spesialiserer oss på vippebehandlinger som fremhever din
-                naturlige skjønnhet. Alle behandlinger utføres med
-                høykvalitetsprodukter og omhu for ditt velvære.
+                Fremhev ditt naturlige utseende med våre behandlinger for vipper
+                og bryn! Vi tilbyr alt fra forming og farging til
+                vippeextensions, slik at du får perfekte rammer for øynene.
+                Skreddersydd for å fremheve din unike skjønnhet.
               </p>
             </div>
 
