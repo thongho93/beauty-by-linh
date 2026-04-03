@@ -105,7 +105,7 @@ export default function HomePage() {
             e.stopPropagation();
             scrollToNextSlow();
           }}
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95 cursor-pointer"
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95 cursor-pointer hidden sm:block"
         >
           <div
             className="text-2xl transition-colors duration-300 hover:text-[color:var(--color-gold)]"
