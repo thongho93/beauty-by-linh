@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import HomePage from "@/pages/HomePage";
 import Priser from "@/pages/Priser";
 import Tjenester from "@/pages/Tjenester";
+import Galleri from "@/pages/Galleri";
 import Footer from "@/components/layout/Footer";
 
 function ScrollToHash() {
@@ -55,6 +56,15 @@ export default function App() {
           element={
             <>
               <Priser />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/galleri"
+          element={
+            <>
+              <Galleri />
               <Footer />
             </>
           }

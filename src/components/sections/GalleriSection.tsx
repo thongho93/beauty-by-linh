@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 // Gallery images — add more by dropping photos into /public/img/instagram/
 // Note: HEIC files need to be converted to JPG to display in browsers.
 const galleryImages = [
-  { src: "/img/instagram/A5515D00-80F9-4780-BC7A-402FED0D49ED.JPG", alt: "Vippeextensions", position: "center center" },
-  { src: "/img/instagram/IMG_2526.JPG", alt: "Vippeløft", position: "center center" },
-  { src: "/img/instagram/IMG_1133.jpg", alt: "Klassisk sett", position: "center center" },
-  { src: "/img/instagram/IMG_2535.jpg", alt: "Volum vipper", position: "center center" },
-  { src: "/img/instagram/IMG_8417.jpg", alt: "Mix/wispy", position: "center center" },
-  { src: "/img/instagram/IMG_8496.jpg", alt: "Farging av vipper", position: "center center" },
+  { src: "/img/instagram/1.png", alt: "Vippeextensions", position: "center center" },
+  { src: "/img/instagram/2.png", alt: "Vippeløft", position: "center center" },
+  { src: "/img/instagram/3.png", alt: "Klassisk sett", position: "center center" },
+  { src: "/img/instagram/4.png", alt: "Volum vipper", position: "center center" },
+  { src: "/img/instagram/5.png", alt: "Mix/wispy", position: "center center" },
+  { src: "/img/instagram/6.png", alt: "Farging av vipper", position: "center center" },
 ];
 
 export default function GalleriSection() {
@@ -28,7 +28,7 @@ export default function GalleriSection() {
   }, [lightbox]);
 
   return (
-    <section id="galleri" className="relative pt-16 pb-28 px-4 bg-[#080808]">
+    <section id="galleri" className="relative py-10 px-10 sm:px-16 bg-[#080808] min-h-screen flex flex-col justify-center">
       {/* Top/bottom atmosphere fades */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent" />
@@ -36,12 +36,12 @@ export default function GalleriSection() {
       <div className="relative mx-auto max-w-5xl">
 
         {/* Heading */}
-        <div className="mb-14 text-center">
+        <div className="mb-8 text-center">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
-          <h2 className="font-['Playfair_Display'] text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
+          <h2 className="font-['Playfair_Display'] text-xl sm:text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
             Galleri
           </h2>
-          <p className="mt-4 text-sm tracking-[0.25em] text-white/50">
+          <p className="mt-4 text-[10px] tracking-[0.15em] sm:text-sm sm:tracking-[0.25em] text-white/50">
             FØLG OSS PÅ{" "}
             <a
               href="https://www.instagram.com/lash_by_lin/"
@@ -56,14 +56,14 @@ export default function GalleriSection() {
         </div>
 
         {/* Symmetric 3×2 photo grid — equal images, equal gaps */}
-        <div className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-          <div className="grid grid-cols-3 gap-1.5">
+        <div className="w-full">
+          <div className="grid grid-cols-3 gap-1">
             {galleryImages.map((img, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setLightbox(img)}
-                className="group relative aspect-square overflow-hidden hover:shadow-none"
+                className="group relative aspect-[16/9] overflow-hidden hover:shadow-none"
               >
                 <img
                   src={img.src}
@@ -83,11 +83,9 @@ export default function GalleriSection() {
         </div>
 
         {/* Bottom link */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 text-center">
           <a
-            href="https://www.instagram.com/lash_by_lin/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/galleri"
             className="border border-[color:var(--color-gold)] px-10 py-3 text-xs tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98]"
           >
             SE FLERE BILDER
