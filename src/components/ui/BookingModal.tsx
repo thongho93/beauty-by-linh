@@ -14,19 +14,9 @@ export default function BookingModal({ onClose }: Props) {
     };
     window.addEventListener("keydown", onKeyDown);
 
-    // Load iframeResizer script
-    const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/2.8.3/iframeResizer.min.js";
-    script.onload = () => {
-      // @ts-expect-error iFrameResize is loaded globally
-      if (typeof iFrameResize === "function") iFrameResize({ checkOrigin: false }, "#reservationIframe65851");
-    };
-    document.body.appendChild(script);
-
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
-      document.body.removeChild(script);
     };
   }, [onClose]);
 
@@ -57,9 +47,9 @@ export default function BookingModal({ onClose }: Props) {
           </button>
         </div>
 
-        {/* Iframe */}
+        {/* Iframe — iframeResizer intentionally removed; let the iframe scroll natively */}
         <iframe
-          id="reservationIframe65851"
+          id="reservationIframe47579"
           src="https://bestill.timma.no/reservation/lashesbylinh"
           title="Book a lash appointment"
           width="100%"

@@ -22,9 +22,9 @@ const footerLinks: Array<{
   {
     title: "KONTAKT",
     items: [
-      { label: "Telefon: +47 99 99 99 99", href: "tel:+4799999999" },
-      { label: "Adresse: Oslo, Norge", href: "https://maps.google.com/?q=Oslo", external: true },
-      { label: "E-post: kontakt@lashesbylinh.no", href: "mailto:kontakt@lashesbylinh.no" },
+      { label: "Telefon: +47 92 34 58 17", href: "tel:+4792345817" },
+      { label: "Adresse: Fyrstikkbakken 14C, 0665 Oslo", href: "https://maps.google.com/?q=Fyrstikkbakken+14C,+0665+Oslo", external: true },
+      { label: "E-post: nguyentruclinh.hcm@gmail.com", href: "mailto:nguyentruclinh.hcm@gmail.com" },
     ],
   },
 ];

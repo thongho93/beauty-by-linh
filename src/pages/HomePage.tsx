@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import BookingModal from "@/components/ui/BookingModal";
 import TjenesterSection from "@/components/sections/TjenesterSection";
 import GalleriSection from "@/components/sections/GalleriSection";
+import ReviewsSection from "@/components/sections/ReviewsSection";
 
 export default function HomePage() {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function HomePage() {
       <Header mode="sticky" onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
-        className="relative min-h-screen overflow-hidden cursor-pointer"
+        className="relative overflow-hidden cursor-pointer" style={{ minHeight: "100svh" }}
         role="button"
         tabIndex={0}
         onClick={() => scrollToNextSlow()}
@@ -67,7 +68,7 @@ export default function HomePage() {
         
 
 
-        <div className="relative z-10 flex min-h-screen items-end justify-center px-4 pb-24">
+        <div className="relative z-10 flex items-end justify-center px-4 pb-12 sm:pb-24" style={{ minHeight: "100svh" }}>
           <div>
             <div
               className="text-center text-white"
@@ -105,7 +106,7 @@ export default function HomePage() {
             e.stopPropagation();
             scrollToNextSlow();
           }}
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95 cursor-pointer"
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95 cursor-pointer hidden sm:block"
         >
           <div
             className="text-2xl transition-colors duration-300 hover:text-[color:var(--color-gold)]"
@@ -119,6 +120,7 @@ export default function HomePage() {
       <TjenesterSection />
 
       <GalleriSection />
+      <ReviewsSection />
       <style>
         {`
           @media (min-width: 640px) and (max-width: 1279px) {

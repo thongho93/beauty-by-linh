@@ -1,22 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+// Gallery images — add more by dropping photos into /public/img/instagram/
+// Note: HEIC files need to be converted to JPG to display in browsers.
+const galleryImages = [
+  { src: "/img/instagram/A5515D00-80F9-4780-BC7A-402FED0D49ED.JPG", alt: "Vippeextensions", position: "center center" },
+  { src: "/img/instagram/IMG_2526.JPG", alt: "Vippeløft", position: "center center" },
+  { src: "/img/instagram/IMG_1133.jpg", alt: "Klassisk sett", position: "center center" },
+  { src: "/img/instagram/IMG_2535.jpg", alt: "Volum vipper", position: "center center" },
+  { src: "/img/instagram/IMG_8417.jpg", alt: "Mix/wispy", position: "center center" },
+  { src: "/img/instagram/IMG_8496.jpg", alt: "Farging av vipper", position: "center center" },
+];
 
 export default function GalleriSection() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [zoomed, setZoomed] = useState(false);
+
   useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = "https://w.behold.so/widget.js";
-    document.head.appendChild(script);
+    if (!lightbox) return;
+    setZoomed(false);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
     return () => {
-      document.head.removeChild(script);
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
     };
-  }, []);
+  }, [lightbox]);
 
   return (
-    <section id="galleri" className="py-24 px-4">
-      <div className="mx-auto max-w-5xl">
+    <section id="galleri" className="relative pt-16 pb-28 px-4 bg-[#080808]">
+      {/* Top/bottom atmosphere fades */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent" />
+
+      <div className="relative mx-auto max-w-5xl">
 
         {/* Heading */}
-        <div className="mb-16 text-center">
+        <div className="mb-14 text-center">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
           <h2 className="font-['Playfair_Display'] text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
             Galleri
@@ -35,12 +55,35 @@ export default function GalleriSection() {
           <div className="mx-auto mt-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
         </div>
 
-        {/* Behold Instagram widget */}
-        {/* @ts-expect-error – behold-widget is a custom HTML element */}
-        <behold-widget feed-id="HwdIqHyPiLk1quWWNn7s" />
+        {/* Symmetric 3×2 photo grid — equal images, equal gaps */}
+        <div className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="grid grid-cols-3 gap-1.5">
+            {galleryImages.map((img, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setLightbox(img)}
+                className="group relative aspect-square overflow-hidden hover:shadow-none"
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: img.position }}
+                />
+                {/* Gold border on hover */}
+                <div className="absolute inset-0 ring-1 ring-inset ring-[color:var(--color-gold)]/0 group-hover:ring-[color:var(--color-gold)]/55 transition-all duration-300" />
+                {/* Label slides up on hover */}
+                <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 px-3 py-2 bg-gradient-to-t from-black/75 to-transparent">
+                  <p className="text-[9px] tracking-[0.25em] text-white/80">{img.alt.toUpperCase()}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Bottom link */}
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <a
             href="https://www.instagram.com/lash_by_lin/"
             target="_blank"
@@ -51,6 +94,48 @@ export default function GalleriSection() {
           </a>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            aria-label="Lukk"
+            onClick={() => setLightbox(null)}
+            className="absolute top-5 right-5 z-10 grid h-10 w-10 place-items-center text-white/70 transition-opacity hover:opacity-100 hover:shadow-none bg-transparent"
+          >
+            <span className="absolute h-[1.5px] w-6 rotate-45 bg-current" />
+            <span className="absolute h-[1.5px] w-6 -rotate-45 bg-current" />
+          </button>
+
+          <div
+            className="relative overflow-hidden"
+            style={{ maxWidth: "90vw", maxHeight: "90vh" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              onClick={() => setZoomed((z) => !z)}
+              className="block transition-transform duration-300 select-none"
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                transform: zoomed ? "scale(2)" : "scale(1)",
+                transformOrigin: "center center",
+                cursor: zoomed ? "zoom-out" : "zoom-in",
+              }}
+            />
+          </div>
+
+          <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs tracking-[0.2em] text-white/40">
+            {zoomed ? "KLIKK FOR Å ZOOME UT" : "KLIKK FOR Å ZOOME INN"}
+          </p>
+        </div>
+      )}
     </section>
   );
 }
