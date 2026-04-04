@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import LashesLogo from "@/components/ui/LashesLogo";
 
-type HeaderMode = "hero" | "sticky";
-
 interface HeaderProps {
-  mode?: HeaderMode;
   onBookClick?: () => void;
 }
 
@@ -17,7 +14,7 @@ const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Kontakt", href: "/#kontakt" },
 ];
 
-export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
+export default function Header({ onBookClick }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -93,18 +90,13 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
       {/* Mobile / tablet slide-out menu */}
       <div
         className={`fixed inset-0 z-50 lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
-        aria-hidden={!open}
       >
-        {/* Backdrop */}
         <div
           className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
           onClick={() => setOpen(false)}
         />
-
-        {/* Drawer */}
         <aside
           className={`absolute left-0 top-0 h-full w-[80vw] max-w-[380px] border-r border-[color:var(--color-gold)]/20 bg-black transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
-          role="dialog"
           aria-label="Meny"
         >
           <div className="flex h-full flex-col px-8 pb-10 pt-8">
@@ -122,20 +114,17 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
               </button>
             </div>
 
-            {/* Nav links */}
-            <nav className="space-y-5">
-              {navItems.map((item) => {
-                const cls = "block text-xl tracking-[0.1em] text-white/80 transition-colors duration-200 hover:text-[color:var(--color-gold)]";
-                return item.external ? (
-                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className={cls} onClick={() => setOpen(false)}>
-                    {item.label}
-                  </a>
-                ) : (
-                  <a key={item.label} href={item.href} className={cls} onClick={() => setOpen(false)}>
-                    {item.label}
-                  </a>
-                );
-              })}
+            <nav className="flex flex-col gap-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm tracking-[0.25em] text-white/70 transition-colors duration-200 hover:text-[color:var(--color-gold)]"
+                >
+                  {item.label.toUpperCase()}
+                </a>
+              ))}
             </nav>
 
             {/* CTA at bottom */}

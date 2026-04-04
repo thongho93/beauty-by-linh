@@ -161,7 +161,10 @@ export default function Tjenester() {
                     onClick={() => setBookingOpen(true)}
                     className="mt-6 flex items-center gap-1.5 text-sm font-bold transition-opacity duration-200 hover:opacity-70 hover:shadow-none w-fit text-[color:var(--color-gold)]"
                   >
-                    Les mer <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    Les mer{" "}
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">
+                      →
+                    </span>
                   </button>
                 </div>
               </div>
