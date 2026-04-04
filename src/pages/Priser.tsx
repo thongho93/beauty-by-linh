@@ -148,13 +148,13 @@ export default function Priser() {
                 {category.items.map((item) => (
                   <div key={item.name} className="flex items-center justify-between gap-3 py-3">
                     <span
-                      className="text-sm leading-snug text-[#d6c8bf]"
+                      className="text-base leading-snug text-[#d6c8bf]"
                       style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
                     >
                       {item.name}
                     </span>
                     <span
-                      className="shrink-0 text-sm text-[#d6c8bf]/80"
+                      className="shrink-0 text-base text-[#d6c8bf]/80"
                       style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}
                     >
                       {item.price}

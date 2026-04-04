@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import BookingModal from "@/components/ui/BookingModal";
 import TjenesterSection from "@/components/sections/TjenesterSection";
 import GalleriSection from "@/components/sections/GalleriSection";
+import ReviewsSection from "@/components/sections/ReviewsSection";
 
 export default function HomePage() {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -119,6 +120,7 @@ export default function HomePage() {
       <TjenesterSection />
 
       <GalleriSection />
+      <ReviewsSection />
       <style>
         {`
           @media (min-width: 640px) and (max-width: 1279px) {

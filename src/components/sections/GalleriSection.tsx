@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 // Gallery images — add more by dropping photos into /public/img/instagram/
 // Note: HEIC files need to be converted to JPG to display in browsers.
 const galleryImages = [
@@ -10,12 +12,31 @@ const galleryImages = [
 ];
 
 export default function GalleriSection() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [zoomed, setZoomed] = useState(false);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    setZoomed(false);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   return (
-    <section id="galleri" className="pt-10 pb-24 px-4">
-      <div className="mx-auto max-w-5xl">
+    <section id="galleri" className="relative pt-16 pb-28 px-4 bg-[#080808]">
+      {/* Top/bottom atmosphere fades */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent" />
+
+      <div className="relative mx-auto max-w-5xl">
 
         {/* Heading */}
-        <div className="mb-12 text-center">
+        <div className="mb-14 text-center">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
           <h2 className="font-['Playfair_Display'] text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
             Galleri
@@ -34,36 +55,35 @@ export default function GalleriSection() {
           <div className="mx-auto mt-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
         </div>
 
-        {/* Photo grid */}
-        <div className="mx-auto w-full max-w-sm sm:max-w-md lg:max-w-xl">
-        <div className="grid grid-cols-3 gap-[3px]">
-          {galleryImages.map((img, i) => (
-            <a
-              key={i}
-              href="https://www.instagram.com/lash_by_lin/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden block"
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ objectPosition: img.position }}
-              />
-              {/* Instagram-style hover overlay */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="h-7 w-7 drop-shadow">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
+        {/* Symmetric 3×2 photo grid — equal images, equal gaps */}
+        <div className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="grid grid-cols-3 gap-1.5">
+            {galleryImages.map((img, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setLightbox(img)}
+                className="group relative aspect-square overflow-hidden hover:shadow-none"
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: img.position }}
+                />
+                {/* Gold border on hover */}
+                <div className="absolute inset-0 ring-1 ring-inset ring-[color:var(--color-gold)]/0 group-hover:ring-[color:var(--color-gold)]/55 transition-all duration-300" />
+                {/* Label slides up on hover */}
+                <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 px-3 py-2 bg-gradient-to-t from-black/75 to-transparent">
+                  <p className="text-[9px] tracking-[0.25em] text-white/80">{img.alt.toUpperCase()}</p>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Bottom link */}
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <a
             href="https://www.instagram.com/lash_by_lin/"
             target="_blank"
@@ -74,6 +94,48 @@ export default function GalleriSection() {
           </a>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            aria-label="Lukk"
+            onClick={() => setLightbox(null)}
+            className="absolute top-5 right-5 z-10 grid h-10 w-10 place-items-center text-white/70 transition-opacity hover:opacity-100 hover:shadow-none bg-transparent"
+          >
+            <span className="absolute h-[1.5px] w-6 rotate-45 bg-current" />
+            <span className="absolute h-[1.5px] w-6 -rotate-45 bg-current" />
+          </button>
+
+          <div
+            className="relative overflow-hidden"
+            style={{ maxWidth: "90vw", maxHeight: "90vh" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              onClick={() => setZoomed((z) => !z)}
+              className="block transition-transform duration-300 select-none"
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                transform: zoomed ? "scale(2)" : "scale(1)",
+                transformOrigin: "center center",
+                cursor: zoomed ? "zoom-out" : "zoom-in",
+              }}
+            />
+          </div>
+
+          <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs tracking-[0.2em] text-white/40">
+            {zoomed ? "KLIKK FOR Å ZOOME UT" : "KLIKK FOR Å ZOOME INN"}
+          </p>
+        </div>
+      )}
     </section>
   );
 }
