@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-// ── Add / replace reviews here ──────────────────────────────────────────────
-// Copy text from https://timma.no/salong/lashes-by-linh (Reviews section)
 const reviews = [
   // Page 1
   {
@@ -61,7 +59,6 @@ const reviews = [
     stars: 5,
   },
 ];
-// ────────────────────────────────────────────────────────────────────────────
 
 const PER_PAGE = 3;
 const totalPages = Math.ceil(reviews.length / PER_PAGE);
@@ -94,110 +91,175 @@ function ChevronRight() {
   );
 }
 
-export default function ReviewsSection() {
-  const [page, setPage] = useState(0);
+function ReviewCard({ review }: { review: typeof reviews[0] }) {
+  return (
+    <div className="flex flex-col rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-none border border-white/6 bg-[#111] px-5 py-5 transition-all duration-300 hover:border-[color:var(--color-gold)]/25 hover:shadow-[0_0_24px_rgba(183,132,113,0.07)]">
+      <span
+        className="mb-4 block text-4xl leading-none text-[color:var(--color-gold)]/30"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+      >
+        "
+      </span>
+      <Stars count={review.stars} />
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-white/65">{review.text}</p>
+      <div className="my-5 h-px bg-white/8" />
+      <p className="text-sm font-medium text-white/90 tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
+        {review.name}
+      </p>
+      {review.service && (
+        <p className="mt-1 text-[10px] tracking-[0.15em] text-white/35">{review.service.toUpperCase()}</p>
+      )}
+    </div>
+  );
+}
 
+export default function ReviewsSection() {
+  // Desktop: 3 per page
+  const [page, setPage] = useState(0);
   const prev = () => setPage((p) => Math.max(0, p - 1));
   const next = () => setPage((p) => Math.min(totalPages - 1, p + 1));
 
-  return (
-    <section className="relative py-20 px-4">
+  // Mobile: 1 card at a time
+  const [mobileIdx, setMobileIdx] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
+  const mobilePrev = () => setMobileIdx((i) => Math.max(0, i - 1));
+  const mobileNext = () => setMobileIdx((i) => Math.min(reviews.length - 1, i + 1));
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) mobileNext();
+      else mobilePrev();
+    }
+    touchStartX.current = null;
+  };
+
+  return (
+    <section className="relative py-16 px-10 sm:px-16">
       <div className="mx-auto max-w-5xl">
 
         {/* Heading */}
         <div className="mb-14 text-center">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
-          <h2 className="font-['Playfair_Display'] text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
+          <h2 className="font-['Playfair_Display'] text-xl sm:text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
             Hva kundene sier
           </h2>
-          <p className="mt-4 text-sm tracking-[0.25em] text-white/40">100+ ANMELDELSER PÅ TIMMA</p>
+          <p className="mt-4 text-[10px] tracking-[0.15em] sm:text-sm sm:tracking-[0.25em] text-white/40">100+ ANMELDELSER PÅ TIMMA</p>
           <div className="mx-auto mt-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
         </div>
 
-        {/* Slider */}
-        <div className="relative flex items-center gap-3">
-
-          {/* Prev arrow */}
-          <button
-            type="button"
-            aria-label="Forrige"
-            onClick={prev}
-            disabled={page === 0}
-            className="flex-shrink-0 grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-200 hover:border-[color:var(--color-gold)]/40 hover:text-[color:var(--color-gold)] hover:shadow-none disabled:opacity-20 disabled:cursor-default bg-transparent"
+        {/* ── MOBILE slider (≤ sm) — 1 card at a time with swipe ── */}
+        <div className="sm:hidden">
+          <div
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            style={{ animation: "fadeIn 0.3s ease" }}
+            key={mobileIdx}
           >
-            <ChevronLeft />
-          </button>
+            <ReviewCard review={reviews[mobileIdx]} />
+          </div>
+          <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
 
-          {/* Viewport */}
-          <div className="flex-1 overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${page * 100}%)` }}
+          {/* Mobile dots + arrows */}
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              aria-label="Forrige"
+              onClick={mobilePrev}
+              disabled={mobileIdx === 0}
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-200 hover:border-[color:var(--color-gold)]/40 hover:text-[color:var(--color-gold)] hover:shadow-none disabled:opacity-20 disabled:cursor-default bg-transparent"
             >
-              {Array.from({ length: totalPages }).map((_, pageIdx) => (
-                <div key={pageIdx} className="w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-3 gap-5">
-                  {reviews.slice(pageIdx * PER_PAGE, pageIdx * PER_PAGE + PER_PAGE).map((review, i) => (
-                    <div
-                      key={i}
-                      className="flex flex-col rounded-lg border border-white/6 bg-[#111] px-6 py-6 transition-all duration-300 hover:border-[color:var(--color-gold)]/25 hover:shadow-[0_0_24px_rgba(183,132,113,0.07)]"
-                    >
-                      <span
-                        className="mb-4 block text-4xl leading-none text-[color:var(--color-gold)]/30"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
-                      >
-                        "
-                      </span>
-                      <Stars count={review.stars} />
-                      <p className="mt-4 flex-1 text-sm leading-relaxed text-white/65">
-                        {review.text}
-                      </p>
-                      <div className="my-5 h-px bg-white/8" />
-                      <p
-                        className="text-sm font-medium text-white/90 tracking-wide"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
-                      >
-                        {review.name}
-                      </p>
-                      {review.service && (
-                        <p className="mt-1 text-[10px] tracking-[0.15em] text-white/35">
-                          {review.service.toUpperCase()}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
+              <ChevronLeft />
+            </button>
+
+            <div className="flex items-center gap-1.5">
+              {reviews.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Anmeldelse ${i + 1}`}
+                  onClick={() => setMobileIdx(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 hover:shadow-none ${
+                    i === mobileIdx
+                      ? "w-5 bg-[color:var(--color-gold)]"
+                      : "w-1.5 bg-white/25 hover:bg-white/50"
+                  }`}
+                />
               ))}
             </div>
-          </div>
 
-          {/* Next arrow */}
-          <button
-            type="button"
-            aria-label="Neste"
-            onClick={next}
-            disabled={page === totalPages - 1}
-            className="flex-shrink-0 grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-200 hover:border-[color:var(--color-gold)]/40 hover:text-[color:var(--color-gold)] hover:shadow-none disabled:opacity-20 disabled:cursor-default bg-transparent"
-          >
-            <ChevronRight />
-          </button>
+            <button
+              type="button"
+              aria-label="Neste"
+              onClick={mobileNext}
+              disabled={mobileIdx === reviews.length - 1}
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-200 hover:border-[color:var(--color-gold)]/40 hover:text-[color:var(--color-gold)] hover:shadow-none disabled:opacity-20 disabled:cursor-default bg-transparent"
+            >
+              <ChevronRight />
+            </button>
+          </div>
         </div>
 
-        {/* Dots */}
-        <div className="mt-8 flex justify-center gap-2">
-          {Array.from({ length: totalPages }).map((_, i) => (
+        {/* ── DESKTOP slider (sm+) — 3 cards per page ── */}
+        <div className="hidden sm:block">
+          <div className="relative flex items-center gap-3">
             <button
-              key={i}
               type="button"
-              aria-label={`Side ${i + 1}`}
-              onClick={() => setPage(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 hover:shadow-none ${
-                i === page
-                  ? "w-6 bg-[color:var(--color-gold)]"
-                  : "w-1.5 bg-white/25 hover:bg-white/50"
-              }`}
-            />
-          ))}
+              aria-label="Forrige"
+              onClick={prev}
+              disabled={page === 0}
+              className="flex-shrink-0 grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-200 hover:border-[color:var(--color-gold)]/40 hover:text-[color:var(--color-gold)] hover:shadow-none disabled:opacity-20 disabled:cursor-default bg-transparent"
+            >
+              <ChevronLeft />
+            </button>
+
+            <div className="flex-1 overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${page * 100}%)` }}
+              >
+                {Array.from({ length: totalPages }).map((_, pageIdx) => (
+                  <div key={pageIdx} className="w-full flex-shrink-0 grid grid-cols-3 gap-4">
+                    {reviews.slice(pageIdx * PER_PAGE, pageIdx * PER_PAGE + PER_PAGE).map((review, i) => (
+                      <ReviewCard key={i} review={review} />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              aria-label="Neste"
+              onClick={next}
+              disabled={page === totalPages - 1}
+              className="flex-shrink-0 grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/40 transition-all duration-200 hover:border-[color:var(--color-gold)]/40 hover:text-[color:var(--color-gold)] hover:shadow-none disabled:opacity-20 disabled:cursor-default bg-transparent"
+            >
+              <ChevronRight />
+            </button>
+          </div>
+
+          {/* Desktop dots */}
+          <div className="mt-8 flex justify-center gap-2">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Side ${i + 1}`}
+                onClick={() => setPage(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 hover:shadow-none ${
+                  i === page
+                    ? "w-6 bg-[color:var(--color-gold)]"
+                    : "w-1.5 bg-white/25 hover:bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Link to Timma */}

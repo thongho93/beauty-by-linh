@@ -9,19 +9,19 @@ export default function LashesLogo({ className = "" }: { className?: string }) {
     >
       <defs>
         <linearGradient id="lg-metal" x1="0" y1="0" x2="0.4" y2="1">
-          <stop offset="0%"   stopColor="#F0D5C5" />
-          <stop offset="20%"  stopColor="#D4A898" />
-          <stop offset="50%"  stopColor="#B78471" />
-          <stop offset="78%"  stopColor="#7A4E42" />
-          <stop offset="100%" stopColor="#A07060" />
+          <stop offset="0%"   stopColor="#FAE8DA" />
+          <stop offset="20%"  stopColor="#E8BFB0" />
+          <stop offset="50%"  stopColor="#C99A85" />
+          <stop offset="78%"  stopColor="#9B6455" />
+          <stop offset="100%" stopColor="#BF8B79" />
         </linearGradient>
         <linearGradient id="lg-ring" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%"   stopColor="#EDD0C0" />
-          <stop offset="50%"  stopColor="#B78471" />
-          <stop offset="100%" stopColor="#7A4E42" />
+          <stop offset="0%"   stopColor="#FAE8DA" />
+          <stop offset="40%"  stopColor="#D4A898" />
+          <stop offset="100%" stopColor="#9B6455" />
         </linearGradient>
         <filter id="lg-glow">
-          <feGaussianBlur stdDeviation="1" result="b" />
+          <feGaussianBlur stdDeviation="2.5" result="b" />
           <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
         <clipPath id="lg-clip">

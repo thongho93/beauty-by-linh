@@ -62,60 +62,86 @@ export default function Priser() {
       {bookingOpen && <BookingModal onClose={() => setBookingOpen(false)} />}
       <Header onBookClick={() => setBookingOpen(true)} />
 
-      <section className="relative isolate overflow-hidden min-h-screen">
+      {/* Hero — full viewport height */}
+      <section className="relative isolate overflow-hidden bg-black min-h-screen">
+        {/* Background image */}
         <img
-          src="/img/priser-hero.jpg"
+          src="/img/Page cover/to-use-in-priser.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "72% center" }}
+          style={{ objectPosition: "65% 25%", transformOrigin: "center center" }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
+        {/* Gradient dim: light at top, dark at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black" />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-32 sm:px-10 lg:px-16">
-          <div className="max-w-2xl">
-            <h1
-              className="max-w-xl text-5xl leading-[0.95] sm:text-6xl lg:text-7xl"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 600,
-                textShadow: "0 4px 24px rgba(0,0,0,0.35)",
-              }}
-            >
-              Våre priser
-            </h1>
-
-            <div className="mt-8 flex max-w-xl gap-4">
-              <div className="mt-2 h-px w-10 shrink-0 bg-[color:var(--color-gold)]/70" />
-              <p className="text-base leading-8 text-white/85 sm:text-lg">
-                Her finner du en oversikt over prisene på våre behandlinger innen
-                vippeextensions og vippeløft. Velg behandlingen som passer best
-                for deg, enten du ønsker et naturlig resultat eller mer fylde og
-                definisjon.
-              </p>
-            </div>
-
-            {/* CTA buttons */}
-            <div className="mt-10 flex items-center gap-4">
-              <button
-                type="button"
-                onClick={() => setBookingOpen(true)}
-                className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+        {/* Content floats on top of image */}
+        <div className="absolute inset-0 flex items-end pb-12 sm:pb-16">
+          <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16">
+            <div className="max-w-2xl">
+              <h1
+                className="text-4xl leading-[0.95] sm:text-5xl lg:text-6xl"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  background: "linear-gradient(135deg, #EDD5C8 0%, #D4A898 40%, #B78471 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  display: "inline-block",
+                  paddingBottom: "0.15em",
+                  filter: "drop-shadow(0 2px 12px rgba(183,132,113,0.45))",
+                }}
               >
-                Bestill time
-              </button>
-              <a
-                href="#prisoversikt"
-                className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
-              >
-                Se priser
-              </a>
+                Våre priser
+              </h1>
+
+              <div className="mt-6 flex gap-4 max-w-xl">
+                <div className="flex-1">
+                  <div className="mb-3 h-px w-10 bg-[color:var(--color-gold)]/70" />
+                  <p className="text-sm leading-7 text-white/85">
+                    Her finner du en oversikt over prisene<br />på våre vippebehandlinger.
+                  </p>
+                </div>
+                <div className="flex-1">
+                  <div className="mb-3 h-px w-10 bg-[color:var(--color-gold)]/70" />
+                  <p className="text-sm leading-7 text-white/85">
+                    Velg behandlingen som passer<br />best for deg og dine ønsker.
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA buttons */}
+              <div className="mt-8 flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
+                  className="rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-[color:var(--color-gold)] px-7 py-3 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+                >
+                  Bestill time
+                </button>
+                <a
+                  href="#prisoversikt"
+                  className="rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-white/35 px-7 py-3 text-[11px] tracking-[0.35em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
+                >
+                  Se priser
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Image attribution */}
+        <div className="absolute bottom-2 right-3 z-10">
+          <a
+            href="https://www.freepik.com/free-photo/thoughtful-young-woman-with-pink-flower_4096951.htm#fromView=search&page=2&position=48&uuid=5717f3dd-4178-4be1-bbe6-29820664b8ee&query=beauty"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/5 hover:text-white/20 transition-colors" style={{ fontSize: "4px", letterSpacing: 0 }}
+          >
+freepik
+          </a>
         </div>
       </section>
 

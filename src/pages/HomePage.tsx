@@ -54,47 +54,42 @@ export default function HomePage() {
         }}
       >
         <img
-          src="/img/lashes-by-linh-1.jpg"
+          src="/img/Page cover/to-use-in-homepage.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover hero-img"
-          style={{
-            objectPosition: "96% 60%",
-            transform: "scale(1.08) translateY(-5%)",
-            transformOrigin: "center center",
-          }}
+          style={{ objectPosition: "right bottom", transform: "translateX(22%) translateY(12%) scale(1.05)" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
-        
+        {/* Hard black on left fading into transparent where image starts */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" style={{ background: "linear-gradient(to right, #000 0%, #000 30%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.05) 70%, transparent 100%)" }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
+        <div
+          className="relative z-10 flex items-center px-6 sm:px-10 lg:px-16"
+          style={{ minHeight: "100svh" }}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+        >
+          <div className="max-w-lg text-white">
+            <div className="text-5xl sm:text-6xl lg:text-7xl tracking-[0.25em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>
+              LASHES<br />BY LINH
+            </div>
+            <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
 
-        <div className="relative z-10 flex items-end justify-center px-4 pb-12 sm:pb-24" style={{ minHeight: "100svh" }}>
-          <div>
-            <div
-              className="text-center text-white"
-              onClick={(e) => e.stopPropagation()}
-              onKeyDown={(e) => e.stopPropagation()}
-            >
-<div className="text-5xl sm:text-6xl lg:text-7xl tracking-[0.25em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>LASHES<br className="block sm:hidden" /> BY LINH</div>
-              <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
-
-              <div className="mt-10 flex items-center justify-center gap-4">
-                <a
-                  href="#tjenester"
-                  className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-8 py-3.5 text-center text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                  style={{ background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)" }}
-                >
-                  Tjenester
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setBookingOpen(true)}
-                  className="rounded-tl-lg rounded-tr-lg rounded-bl-none rounded-br-lg px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98]"
-                  style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
-                >
-                  Bestill time
-                </button>
-              </div>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-5">
+              <a
+                href="#tjenester"
+                className="w-full max-w-[220px] rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-white/35 px-5 py-3.5 text-center text-[11px] tracking-[0.35em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
+              >
+                Tjenester
+              </a>
+              <button
+                type="button"
+                onClick={() => setBookingOpen(true)}
+                className="w-full max-w-[220px] rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-[color:var(--color-gold)] px-5 py-3.5 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+              >
+                Bestill time
+              </button>
             </div>
           </div>
         </div>
@@ -106,7 +101,7 @@ export default function HomePage() {
             e.stopPropagation();
             scrollToNextSlow();
           }}
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95 cursor-pointer hidden sm:block"
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 bg-transparent border-none text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:bg-transparent hover:shadow-none hover:scale-110 active:scale-95 cursor-pointer hidden sm:block"
         >
           <div
             className="text-2xl transition-colors duration-300 hover:text-[color:var(--color-gold)]"
@@ -123,25 +118,7 @@ export default function HomePage() {
       <ReviewsSection />
       <style>
         {`
-          @media (min-width: 640px) and (max-width: 1279px) {
-            .hero-img {
-              object-position: 58% 45% !important;
-              transform: scale(1.08) translateY(-5%) !important;
-            }
-          }
-          @media (min-width: 1280px) {
-            .hero-img {
-              object-position: 88% 60% !important;
-              transform: scale(1.08) translateY(-5%) !important;
-            }
-          }
-          @media (max-width: 639px) {
-            .hero-img {
-              object-position: 48% 55% !important;
-              transform: scale(1.08) translateY(-4%) !important;
-            }
-          }
-          @keyframes floatY {
+@keyframes floatY {
             0% { transform: translateY(0); }
             50% { transform: translateY(10px); }
             100% { transform: translateY(0); }

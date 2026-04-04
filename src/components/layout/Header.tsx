@@ -11,7 +11,7 @@ interface HeaderProps {
 const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Hjem", href: "/#home" },
   { label: "Tjenester", href: "/tjenester" },
-  { label: "Galleri", href: "/#galleri" },
+  { label: "Galleri", href: "/galleri" },
   { label: "Priser", href: "/priser" },
   { label: "Om", href: "/#om" },
   { label: "Kontakt", href: "/#kontakt" },
@@ -32,17 +32,13 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
   return (
     <>
       <header
-        className={
-          mode === "sticky"
-            ? "fixed left-0 right-0 top-0 z-40 bg-black/50 backdrop-blur-md border-b border-white/10"
-            : "fixed left-0 right-0 top-0 z-40 bg-black/50 backdrop-blur-md border-b border-white/10"
-        }
+        className="fixed left-0 right-0 top-0 z-40 bg-black/70 backdrop-blur-md border-b border-[color:var(--color-gold)]/15"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 lg:px-12">
 
           {/* LEFT — Logo */}
           <a href="/#home" aria-label="Gå til toppen" className="shrink-0">
-            <LashesLogo className="h-14 w-14 drop-shadow-[0_0_8px_rgba(183,132,113,0.4)]" />
+            <LashesLogo className="h-10 w-10 drop-shadow-[0_0_12px_rgba(201,154,133,0.7)]" />
           </a>
 
           {/* RIGHT — Nav + CTA button + hamburger */}
@@ -70,12 +66,11 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
                 )
               )}
             </nav>
-            {/* Filled CTA button */}
+            {/* Filled CTA button — hidden on small mobile, visible from sm up */}
             <button
               type="button"
               onClick={onBookClick}
-              className="rounded-tl-lg rounded-tr-none rounded-bl-lg rounded-br-lg px-5 py-2.5 text-[11px] font-bold tracking-wide text-white transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_20px_rgba(183,132,113,0.4)] hover:scale-[1.03] active:scale-[0.98]"
-              style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+              className="hidden sm:block rounded-tl-md rounded-bl-md rounded-br-md rounded-tr-none border border-[color:var(--color-gold)] px-4 py-1.5 text-[10px] tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
             >
               Bestill time
             </button>
@@ -148,8 +143,7 @@ export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
               <button
                 type="button"
                 onClick={() => { setOpen(false); onBookClick?.(); }}
-                className="w-full rounded-tl-lg rounded-tr-lg rounded-bl-lg rounded-br-none py-3 text-[11px] font-bold tracking-[0.3em] text-white transition-all duration-300 hover:brightness-110"
-                style={{ background: "linear-gradient(135deg, #7A4E42 0%, #9B6455 50%, #B78471 100%)" }}
+                className="w-full rounded-tl-lg rounded-tr-lg rounded-bl-lg rounded-br-none border border-[color:var(--color-gold)] py-3 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
               >
                 Bestill time
               </button>
