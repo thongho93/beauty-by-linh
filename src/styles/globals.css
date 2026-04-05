@@ -95,15 +95,15 @@
 /* Hero image responsive positioning */
 @media (min-width: 640px) and (max-width: 1023px) {
   .hero-img {
-    object-position: 80% 5% !important;
-    transform: none !important;
+    background-position: 80% 5% !important;
+    background-size: cover !important;
   }
 }
 
 @media (max-width: 639px) {
   .hero-img {
-    object-position: 100% 15% !important;
-    transform: none !important;
+    background-position: 39% 0% !important;
+    background-size: cover !important;
   }
   .hero-gradient-lr {
     background: linear-gradient(

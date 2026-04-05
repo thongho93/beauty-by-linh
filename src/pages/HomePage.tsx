@@ -53,12 +53,15 @@ export default function HomePage() {
           }
         }}
       >
-        <img
-          src="/img/Page cover/to-use-in-homepage.jpg"
-          alt=""
+        <div
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover hero-img"
-          style={{ objectPosition: "right bottom", transform: "translateX(22%) translateY(12%) scale(1.05)" }}
+          className="absolute inset-0 hero-img"
+          style={{
+            backgroundImage: "url('/img/Page cover/to-use-in-homepage.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "105%",
+            backgroundPosition: "85% bottom",
+          }}
         />
         {/* Hard black on left fading into transparent where image starts */}
         <div className="hero-gradient-lr absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, #000 30%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.05) 70%, transparent 100%)" }} />
