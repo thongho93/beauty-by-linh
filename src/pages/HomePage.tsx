@@ -39,7 +39,7 @@ export default function HomePage() {
   return (
     <main>
       {bookingOpen ? <BookingModal onClose={() => setBookingOpen(false)} /> : null}
-      <Header mode="sticky" onBookClick={() => setBookingOpen(true)} />
+      <Header onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
         className="relative overflow-hidden cursor-pointer" style={{ minHeight: "100svh" }}
