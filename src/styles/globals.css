@@ -102,7 +102,7 @@
 
 @media (max-width: 639px) {
   .hero-img {
-    object-position: 85% 15% !important;
+    object-position: 100% 15% !important;
     transform: none !important;
   }
   .hero-gradient-lr {
