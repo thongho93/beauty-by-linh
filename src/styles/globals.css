@@ -93,17 +93,17 @@
 }
 
 /* Hero image responsive positioning */
-@media (max-width: 1023px) {
+@media (min-width: 640px) and (max-width: 1023px) {
   .hero-img {
-    object-position: 65% 5% !important;
-    transform: translateX(48%) translateY(21%) scale(1.25) !important;
+    object-position: 80% 5% !important;
+    transform: none !important;
   }
 }
 
 @media (max-width: 639px) {
   .hero-img {
-    object-position: 45% 15% !important;
-    transform: translateX(15%) translateY(14%) scale(1.1) !important;
+    object-position: 85% 15% !important;
+    transform: none !important;
   }
   .hero-gradient-lr {
     background: linear-gradient(
