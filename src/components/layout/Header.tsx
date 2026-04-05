@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import LashesLogo from "@/components/ui/LashesLogo";
 
-type HeaderMode = "hero" | "sticky";
-
 interface HeaderProps {
-  mode?: HeaderMode;
   onBookClick?: () => void;
 }
 
@@ -17,7 +14,7 @@ const navItems: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Kontakt", href: "/#kontakt" },
 ];
 
-export default function Header({ mode = "hero", onBookClick }: HeaderProps) {
+export default function Header({ onBookClick }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

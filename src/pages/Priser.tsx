@@ -69,8 +69,7 @@ export default function Priser() {
           src="/img/Page cover/to-use-in-priser.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "65% 25%", transformOrigin: "center center" }}
+          className="absolute inset-0 h-full w-full object-cover object-[65%_45%] min-[400px]:object-[45%_50%] sm:object-[65%_25%]"
         />
 
         {/* Gradient dim: light at top, dark at bottom */}
@@ -97,7 +96,7 @@ export default function Priser() {
                 Våre priser
               </h1>
 
-              <div className="mt-6 flex gap-4 max-w-xl">
+              <div className="mt-6 grid grid-cols-1 gap-5 max-w-xl sm:grid-cols-2 sm:gap-4">
                 <div className="flex-1">
                   <div className="mb-3 h-px w-10 bg-[color:var(--color-gold)]/70" />
                   <p className="text-sm leading-7 text-white/85">
@@ -113,17 +112,17 @@ export default function Priser() {
               </div>
 
               {/* CTA buttons */}
-              <div className="mt-8 flex items-center gap-4">
+              <div className="mt-8 flex items-stretch gap-4">
                 <button
                   type="button"
                   onClick={() => setBookingOpen(true)}
-                  className="rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-[color:var(--color-gold)] px-7 py-3 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+                  className="flex-1 text-center rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-[color:var(--color-gold)] px-7 py-3 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
                 >
                   Bestill time
                 </button>
                 <a
                   href="#prisoversikt"
-                  className="rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-white/35 px-7 py-3 text-[11px] tracking-[0.35em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
+                  className="flex-1 text-center rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-white/35 px-7 py-3 text-[11px] tracking-[0.35em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
                 >
                   Se priser
                 </a>

@@ -61,11 +61,13 @@ export default function HomePage() {
           style={{ objectPosition: "right bottom", transform: "translateX(22%) translateY(12%) scale(1.05)" }}
         />
         {/* Hard black on left fading into transparent where image starts */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" style={{ background: "linear-gradient(to right, #000 0%, #000 30%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.05) 70%, transparent 100%)" }} />
+        <div className="hero-gradient-lr absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, #000 30%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.05) 70%, transparent 100%)" }} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        {/* Top gradient to cover gap when image is pushed down on tablet */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-transparent" style={{ background: "linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.7) 8%, transparent 20%)" }} />
 
         <div
-          className="relative z-10 flex items-center px-6 sm:px-10 lg:px-16"
+          className="relative z-10 flex items-center px-8 sm:px-16 lg:px-16"
           style={{ minHeight: "100svh" }}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => e.stopPropagation()}

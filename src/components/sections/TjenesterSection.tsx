@@ -93,7 +93,7 @@ export default function TjenesterSection() {
   };
 
   return (
-    <section id="tjenester" className="py-16 px-10 sm:px-16 min-h-screen flex flex-col justify-center">
+    <section id="tjenester" className="py-16 px-10 sm:px-24 lg:px-16 min-h-screen flex flex-col justify-center">
       <div className="mx-auto max-w-5xl w-full">
 
         {/* Heading */}

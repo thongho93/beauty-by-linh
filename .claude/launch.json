@@ -13,5 +13,6 @@
       "runtimeArgs": ["/Users/norbadboy/Documents/Front-end/beauty-by-linh/node_modules/.bin/vite", "preview"],
       "port": 4173
     }
-  ]
+  ],
+  "autoVerify": false
 }
