@@ -42,7 +42,8 @@ export default function HomePage() {
       <Header onBookClick={() => setBookingOpen(true)} />
       <section
         id="home"
-        className="relative overflow-hidden cursor-pointer" style={{ minHeight: "100svh" }}
+        className="relative overflow-hidden cursor-pointer bg-black"
+        style={{ minHeight: "100svh" }}
         role="button"
         tabIndex={0}
         onClick={() => scrollToNextSlow()}
@@ -57,44 +58,56 @@ export default function HomePage() {
           aria-hidden="true"
           className="absolute inset-0 hero-img"
           style={{
-            backgroundImage: "url('/img/Page cover/to-use-in-homepage.jpg')",
+            backgroundImage: "url('/img/Page cover/freepik-to-use-in-homepage.png')",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "105%",
-            backgroundPosition: "85% bottom",
+            backgroundSize: "auto 100%",
+            backgroundPosition: "right center",
           }}
         />
-        {/* Hard black on left fading into transparent where image starts */}
-        <div className="hero-gradient-lr absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, #000 30%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.05) 70%, transparent 100%)" }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        {/* Top gradient to cover gap when image is pushed down on tablet */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-transparent" style={{ background: "linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.7) 8%, transparent 20%)" }} />
+        {/* Uniform dim over the whole image */}
+        <div className="absolute inset-0 bg-black/25" />
+        {/* Bottom fade to black — laptop+ only */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent hidden sm:block" />
+        {/* Blend left black into the image's natural dark background */}
+        <div
+          className="hero-gradient-lr absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, #000 0%, #000 25%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.15) 55%, transparent 70%)",
+          }}
+        />
 
         <div
-          className="relative z-10 flex items-center px-8 sm:px-16 lg:px-16"
+          className="relative z-10 flex items-end sm:items-center px-8 sm:px-16 lg:pl-16 pb-16 sm:pb-0"
           style={{ minHeight: "100svh" }}
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => e.stopPropagation()}
         >
-          <div className="max-w-lg text-white">
-            <div className="text-5xl sm:text-6xl lg:text-7xl tracking-[0.25em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>
-              LASHES<br />BY LINH
-            </div>
-            <div className="mt-3 text-xs sm:text-sm tracking-[0.7em] text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300 }}>OSLO</div>
+          <div className="w-full max-w-lg text-white flex flex-col items-center sm:items-start lg:-mt-[12vh]">
+            <img
+              src="/img/logo-transparent.png"
+              alt="Lashes by Linh Oslo"
+              className="w-52 sm:w-[300px] mb-5 sm:mb-6"
+              style={{
+                filter:
+                  "drop-shadow(0 0 12px rgba(183,107,80,0.4)) drop-shadow(0 0 30px rgba(183,107,80,0.2))",
+              }}
+            />
 
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-5">
-              <a
-                href="#tjenester"
-                className="w-full max-w-[220px] rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-white/35 px-5 py-3.5 text-center text-[11px] tracking-[0.35em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
-              >
-                Tjenester
-              </a>
+            <div className="flex flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
               <button
                 type="button"
                 onClick={() => setBookingOpen(true)}
-                className="w-full max-w-[220px] rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-[color:var(--color-gold)] px-5 py-3.5 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+                className="w-[130px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-[color:var(--color-gold)] px-3 py-2.5 sm:px-4 sm:py-3 text-[10px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
               >
                 Bestill time
               </button>
+              <a
+                href="#tjenester"
+                className="w-[130px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-white/35 px-3 py-2.5 sm:px-4 sm:py-3 text-center text-[10px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
+              >
+                Tjenester
+              </a>
             </div>
           </div>
         </div>

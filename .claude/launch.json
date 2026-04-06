@@ -4,7 +4,7 @@
     {
       "name": "Vite Dev Server",
       "runtimeExecutable": "/Users/norbadboy/.nvm/versions/node/v22.21.1/bin/node",
-      "runtimeArgs": ["/Users/norbadboy/Documents/Front-end/beauty-by-linh/node_modules/.bin/vite"],
+      "runtimeArgs": ["/Users/norbadboy/Documents/Front-end/beauty-by-linh/node_modules/.bin/vite", "--host"],
       "port": 5173
     },
     {

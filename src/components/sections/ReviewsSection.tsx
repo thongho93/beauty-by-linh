@@ -67,7 +67,12 @@ function Stars({ count }: { count: number }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: count }).map((_, i) => (
-        <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-[color:var(--color-gold)]">
+        <svg
+          key={i}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="h-3.5 w-3.5 text-[color:var(--color-gold)]"
+        >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -77,7 +82,13 @@ function Stars({ count }: { count: number }) {
 
 function ChevronLeft() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-5 w-5">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      className="h-5 w-5"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
     </svg>
   );
@@ -85,15 +96,21 @@ function ChevronLeft() {
 
 function ChevronRight() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-5 w-5">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      className="h-5 w-5"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
     </svg>
   );
 }
 
-function ReviewCard({ review }: { review: typeof reviews[0] }) {
+function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
   return (
-    <div className="flex h-full flex-col rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-none border border-white/6 bg-[#111] px-4 py-4 lg:px-4 lg:py-4 transition-all duration-300 hover:border-[color:var(--color-gold)]/25 hover:shadow-[0_0_24px_rgba(183,132,113,0.07)]">
+    <div className="flex h-full flex-col rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-none border border-white/6 bg-[#111] px-4 pt-4 pb-6 lg:px-4 lg:pt-4 lg:pb-6 transition-all duration-300 hover:border-[color:var(--color-gold)]/25 hover:shadow-[0_0_24px_rgba(183,132,113,0.07)]">
       <span
         className="mb-1 block text-2xl leading-none text-[color:var(--color-gold)]/30"
         style={{ fontFamily: "'Playfair Display', serif" }}
@@ -101,14 +118,24 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
         "
       </span>
       <Stars count={review.stars} />
-      <p className="mt-2 flex-1 text-[0.8rem] leading-6 text-white/65">{review.text}</p>
-      <div className="mt-auto">
+      <div className="mt-2 h-[9.5rem] overflow-y-auto pr-1 text-[0.8rem] leading-6 text-white/65 lg:h-[11rem]">
+        <p>{review.text}</p>
+      </div>
+      <div className="mt-4">
         <div className="my-3 h-px bg-white/8" />
-        <p className="text-sm font-medium tracking-wide text-white/90" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <p
+          className="text-[0.95rem] lg:text-[1rem] font-medium leading-none tracking-wide text-white/90"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
           {review.name}
         </p>
         {review.service && (
-          <p className="mt-1 text-[10px] tracking-[0.12em] text-white/35 lg:text-[0.72rem]">{review.service.toUpperCase()}</p>
+          <p
+            className="mt-1 text-[5px] leading-[1.7] tracking-[0.12em] text-white/30 lg:text-[0.3rem] xl:text-[0.38rem]"
+            style={{ minHeight: "4.2em" }}
+          >
+            {review.service.toUpperCase()}
+          </p>
         )}
       </div>
     </div>
@@ -144,14 +171,15 @@ export default function ReviewsSection() {
   return (
     <section className="relative px-4 py-14 sm:px-6 sm:py-16 md:px-10 lg:px-16 lg:py-10 xl:py-8 min-h-screen flex flex-col justify-center">
       <div className="mx-auto max-w-6xl">
-
         {/* Heading */}
         <div className="mb-8 text-center lg:mb-8">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
           <h2 className="font-['Playfair_Display'] text-xl font-light tracking-[0.12em] text-white sm:text-3xl md:text-4xl lg:text-[2.35rem]">
             Hva kundene sier
           </h2>
-          <p className="mt-3 text-[10px] tracking-[0.15em] text-white/40 sm:text-sm sm:tracking-[0.25em]">100+ ANMELDELSER PÅ TIMMA</p>
+          <p className="mt-3 text-[10px] tracking-[0.15em] text-white/40 sm:text-sm sm:tracking-[0.25em]">
+            100+ ANMELDELSER PÅ TIMMA
+          </p>
           <div className="mx-auto mt-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
         </div>
 
@@ -226,10 +254,15 @@ export default function ReviewsSection() {
                 style={{ transform: `translateX(-${page * 100}%)` }}
               >
                 {Array.from({ length: totalPages }).map((_, pageIdx) => (
-                  <div key={pageIdx} className="w-full flex-shrink-0 grid grid-cols-3 gap-3 lg:gap-3">
-                    {reviews.slice(pageIdx * PER_PAGE, pageIdx * PER_PAGE + PER_PAGE).map((review, i) => (
-                      <ReviewCard key={i} review={review} />
-                    ))}
+                  <div
+                    key={pageIdx}
+                    className="w-full flex-shrink-0 grid grid-cols-3 gap-3 lg:gap-3"
+                  >
+                    {reviews
+                      .slice(pageIdx * PER_PAGE, pageIdx * PER_PAGE + PER_PAGE)
+                      .map((review, i) => (
+                        <ReviewCard key={i} review={review} />
+                      ))}
                   </div>
                 ))}
               </div>

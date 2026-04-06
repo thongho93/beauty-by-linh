@@ -40,7 +40,7 @@ export default function Header({ onBookClick }: HeaderProps) {
 
           {/* RIGHT — Nav + CTA button + hamburger */}
           <div className="flex items-center gap-3 shrink-0">
-            <nav className="hidden lg:flex items-center gap-7 mr-4">
+            <nav className="hidden min-[950px]:flex items-center gap-7 mr-4">
               {navItems.map((item) =>
                 item.external ? (
                   <a
@@ -75,7 +75,7 @@ export default function Header({ onBookClick }: HeaderProps) {
             {/* Hamburger — tablet & mobile only */}
             <button
               type="button"
-              className="lg:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
+              className="min-[950px]:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
               aria-label={open ? "Lukk meny" : "Åpne meny"}
               onClick={() => setOpen((v) => !v)}
             >
@@ -89,7 +89,7 @@ export default function Header({ onBookClick }: HeaderProps) {
 
       {/* Mobile / tablet slide-out menu */}
       <div
-        className={`fixed inset-0 z-50 lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-50 min-[950px]:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
         aria-hidden={!open}
       >
         {/* Backdrop */}
