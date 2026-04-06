@@ -28,7 +28,7 @@ export default function GalleriSection() {
   }, [lightbox]);
 
   return (
-    <section id="galleri" className="relative py-10 px-10 sm:px-16 bg-[#080808] min-h-screen flex flex-col justify-center">
+    <section id="galleri" className="relative bg-[#080808] px-4 sm:px-6 md:px-10 lg:px-16 py-16 sm:py-20 min-h-0 lg:min-h-screen flex flex-col justify-start lg:justify-center">
       {/* Top/bottom atmosphere fades */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent" />
@@ -36,7 +36,7 @@ export default function GalleriSection() {
       <div className="relative mx-auto max-w-5xl">
 
         {/* Heading */}
-        <div className="mb-8 text-center">
+        <div className="mb-8 text-center sm:mb-10">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
           <h2 className="font-['Playfair_Display'] text-xl sm:text-3xl font-light tracking-[0.15em] text-white md:text-4xl">
             Galleri
@@ -57,7 +57,7 @@ export default function GalleriSection() {
 
         {/* Symmetric 3×2 photo grid — equal images, equal gaps */}
         <div className="w-full">
-          <div className="grid grid-cols-3 gap-1">
+          <div className="grid grid-cols-2 gap-2 min-[500px]:grid-cols-3">
             {galleryImages.map((img, i) => (
               <button
                 key={i}
@@ -83,10 +83,10 @@ export default function GalleriSection() {
         </div>
 
         {/* Bottom link */}
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center sm:mt-10">
           <a
             href="/galleri"
-            className="border border-[color:var(--color-gold)] px-10 py-3 text-xs tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98]"
+            className="inline-flex w-full max-w-[18rem] items-center justify-center border border-[color:var(--color-gold)] px-6 py-3 text-center text-[0.78rem] tracking-[0.2em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] min-[375px]:w-auto min-[375px]:max-w-none min-[375px]:px-10 min-[375px]:text-xs min-[375px]:tracking-[0.3em]"
           >
             SE FLERE BILDER
           </a>

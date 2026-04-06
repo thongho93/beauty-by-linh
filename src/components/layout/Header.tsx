@@ -40,7 +40,7 @@ export default function Header({ onBookClick }: HeaderProps) {
 
           {/* RIGHT — Nav + CTA button + hamburger */}
           <div className="flex items-center gap-3 shrink-0">
-            <nav className="hidden lg:flex items-center gap-7 mr-4">
+            <nav className="hidden min-[950px]:flex items-center gap-7 mr-4">
               {navItems.map((item) =>
                 item.external ? (
                   <a
@@ -75,7 +75,7 @@ export default function Header({ onBookClick }: HeaderProps) {
             {/* Hamburger — tablet & mobile only */}
             <button
               type="button"
-              className="lg:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
+              className="min-[950px]:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
               aria-label={open ? "Lukk meny" : "Åpne meny"}
               onClick={() => setOpen((v) => !v)}
             >
@@ -89,14 +89,19 @@ export default function Header({ onBookClick }: HeaderProps) {
 
       {/* Mobile / tablet slide-out menu */}
       <div
-        className={`fixed inset-0 z-50 lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-50 min-[950px]:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden={!open}
       >
+        {/* Backdrop */}
         <div
           className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
           onClick={() => setOpen(false)}
         />
+
+        {/* Drawer */}
         <aside
           className={`absolute left-0 top-0 h-full w-[80vw] max-w-[380px] border-r border-[color:var(--color-gold)]/20 bg-black transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
+          role="dialog"
           aria-label="Meny"
         >
           <div className="flex h-full flex-col px-8 pb-10 pt-8">
@@ -114,17 +119,20 @@ export default function Header({ onBookClick }: HeaderProps) {
               </button>
             </div>
 
-            <nav className="flex flex-col gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm tracking-[0.25em] text-white/70 transition-colors duration-200 hover:text-[color:var(--color-gold)]"
-                >
-                  {item.label.toUpperCase()}
-                </a>
-              ))}
+            {/* Nav links */}
+            <nav className="space-y-5">
+              {navItems.map((item) => {
+                const cls = "block text-xl tracking-[0.1em] text-white/80 transition-colors duration-200 hover:text-[color:var(--color-gold)]";
+                return item.external ? (
+                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className={cls} onClick={() => setOpen(false)}>
+                    {item.label}
+                  </a>
+                ) : (
+                  <a key={item.label} href={item.href} className={cls} onClick={() => setOpen(false)}>
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
 
             {/* CTA at bottom */}
