@@ -98,13 +98,13 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => setBookingOpen(true)}
-                className="w-[130px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-[color:var(--color-gold)] px-3 py-2.5 sm:px-4 sm:py-3 text-[10px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+                className="w-[150px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-[color:var(--color-gold)] px-4 py-3 sm:px-4 sm:py-3 text-[11px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
               >
                 Bestill time
               </button>
               <a
                 href="#tjenester"
-                className="w-[130px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-white/35 px-3 py-2.5 sm:px-4 sm:py-3 text-center text-[10px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
+                className="w-[150px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-white/35 px-4 py-3 sm:px-4 sm:py-3 text-center text-[11px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.3em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
               >
                 Tjenester
               </a>

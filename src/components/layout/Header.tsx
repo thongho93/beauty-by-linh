@@ -35,7 +35,7 @@ export default function Header({ onBookClick }: HeaderProps) {
 
           {/* LEFT — Logo */}
           <a href="/#home" aria-label="Gå til toppen" className="shrink-0">
-            <LashesLogo className="h-10 w-10 drop-shadow-[0_0_12px_rgba(201,154,133,0.7)]" />
+            <LashesLogo className="h-12 w-12 sm:h-10 sm:w-10 drop-shadow-[0_0_12px_rgba(201,154,133,0.7)]" />
           </a>
 
           {/* RIGHT — Nav + CTA button + hamburger */}
@@ -75,13 +75,13 @@ export default function Header({ onBookClick }: HeaderProps) {
             {/* Hamburger — tablet & mobile only */}
             <button
               type="button"
-              className="min-[950px]:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
+              className="min-[950px]:hidden flex h-12 w-12 flex-col items-center justify-center gap-[6px] sm:h-10 sm:w-10 sm:gap-[5px] cursor-pointer bg-transparent text-[color:var(--color-gold)] hover:shadow-none"
               aria-label={open ? "Lukk meny" : "Åpne meny"}
               onClick={() => setOpen((v) => !v)}
             >
-              <span className={`block h-[1.5px] w-5 bg-current transition-all duration-300 origin-center ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
-              <span className={`block h-[1.5px] w-5 bg-current transition-all duration-300 ${open ? "opacity-0" : ""}`} />
-              <span className={`block h-[1.5px] w-5 bg-current transition-all duration-300 origin-center ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
+              <span className={`block h-[2px] w-6 sm:h-[1.5px] sm:w-5 bg-current transition-all duration-300 origin-center ${open ? "translate-y-[7px] sm:translate-y-[6.5px] rotate-45" : ""}`} />
+              <span className={`block h-[2px] w-6 sm:h-[1.5px] sm:w-5 bg-current transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+              <span className={`block h-[2px] w-6 sm:h-[1.5px] sm:w-5 bg-current transition-all duration-300 origin-center ${open ? "-translate-y-[7px] sm:-translate-y-[6.5px] -rotate-45" : ""}`} />
             </button>
           </div>
         </div>
@@ -98,49 +98,57 @@ export default function Header({ onBookClick }: HeaderProps) {
           onClick={() => setOpen(false)}
         />
 
-        {/* Drawer */}
+        {/* Fullscreen menu */}
         <aside
-          className={`absolute left-0 top-0 h-full w-[80vw] max-w-[380px] border-r border-[color:var(--color-gold)]/20 bg-black transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
+          className={`absolute inset-0 h-dvh w-full bg-[linear-gradient(180deg,rgba(10,10,11,0.98)_0%,rgba(0,0,0,0.99)_100%)] transition-all duration-300 ${open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}
           role="dialog"
           aria-label="Meny"
         >
-          <div className="flex h-full flex-col px-8 pb-10 pt-8">
+          <div className="flex h-full flex-col px-8 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(2rem,env(safe-area-inset-top))]">
             {/* Drawer header */}
-            <div className="flex items-center justify-between mb-10">
-              <LashesLogo className="h-12 w-12" />
+            <div className="mb-8 flex items-center justify-between">
+              <LashesLogo className="h-12 w-12 scale-[1.28] origin-left-top" />
               <button
                 type="button"
-                className="grid h-10 w-10 place-items-center bg-transparent text-[color:var(--color-gold)] transition-opacity duration-300 hover:opacity-70 hover:shadow-none"
+                className="grid h-10 w-10 scale-[1.22] place-items-center bg-transparent text-[color:var(--color-gold)] transition-opacity duration-300 hover:opacity-70 hover:shadow-none"
                 aria-label="Lukk meny"
                 onClick={() => setOpen(false)}
               >
-                <span className="absolute h-[1.5px] w-5 rotate-45 bg-current" />
-                <span className="absolute h-[1.5px] w-5 -rotate-45 bg-current" />
+                <span className="absolute h-[1.8px] w-6 rotate-45 bg-current" />
+                <span className="absolute h-[1.8px] w-6 -rotate-45 bg-current" />
               </button>
             </div>
 
-            {/* Nav links */}
-            <nav className="space-y-5">
-              {navItems.map((item) => {
-                const cls = "block text-xl tracking-[0.1em] text-white/80 transition-colors duration-200 hover:text-[color:var(--color-gold)]";
-                return item.external ? (
-                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className={cls} onClick={() => setOpen(false)}>
-                    {item.label}
-                  </a>
-                ) : (
-                  <a key={item.label} href={item.href} className={cls} onClick={() => setOpen(false)}>
-                    {item.label}
-                  </a>
-                );
-              })}
-            </nav>
+            <div className="flex flex-1 flex-col items-center justify-center">
+              {/* Nav links */}
+              <nav className="space-y-5 text-center">
+                {navItems.map((item) => {
+                  const cls =
+                    "block text-[2rem] leading-none tracking-[0.12em] text-white/85 transition-colors duration-200 hover:text-[color:var(--color-gold)] sm:text-[2.25rem]";
+                  return item.external ? (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cls}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <a key={item.label} href={item.href} className={cls} onClick={() => setOpen(false)}>
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </nav>
 
-            {/* CTA at bottom */}
-            <div className="mt-auto">
+              {/* CTA directly below "Kontakt" */}
               <button
                 type="button"
                 onClick={() => { setOpen(false); onBookClick?.(); }}
-                className="w-full rounded-tl-lg rounded-tr-lg rounded-bl-lg rounded-br-none border border-[color:var(--color-gold)] py-3 text-[11px] tracking-[0.35em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+                className="mt-8 rounded-tl-xl rounded-tr-xl rounded-bl-xl rounded-br-none border border-[color:var(--color-gold)]/85 px-10 py-4 text-[13px] tracking-[0.34em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_26px_rgba(183,132,113,0.35)] active:scale-[0.98]"
               >
                 Bestill time
               </button>
