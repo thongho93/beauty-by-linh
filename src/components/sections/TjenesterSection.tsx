@@ -5,6 +5,7 @@ interface Service {
   description: string;
   img?: string;
   imgPosition?: string;
+  href?: string;
 }
 
 const services: Service[] = [
@@ -14,6 +15,7 @@ const services: Service[] = [
       "Få fyldige, vakre vipper skreddersydd etter dine ønsker. Vi tilbyr alt fra naturlig volumøkning til dramatisk effekt – med langvarige resultater som fremhever blikket ditt.",
     img: "/img/lashes-by-linh-1.jpg",
     imgPosition: "center 30%",
+    href: "/vippeextensions",
   },
   {
     title: "Farging av vipper",
@@ -62,7 +64,7 @@ function ServiceCard({ service }: { service: Service }) {
           {service.description}
         </p>
         <a
-          href="#kontakt"
+          href={service.href ?? "#kontakt"}
           className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.15em] text-[color:var(--color-gold)] transition-opacity duration-200 hover:opacity-70"
         >
           Les mer <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>

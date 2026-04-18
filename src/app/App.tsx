@@ -4,6 +4,7 @@ import HomePage from "@/pages/HomePage";
 import Priser from "@/pages/Priser";
 import Tjenester from "@/pages/Tjenester";
 import Galleri from "@/pages/Galleri";
+import VippeextensionsPage from "@/pages/VippeextensionsPage";
 import Footer from "@/components/layout/Footer";
 
 function ScrollToHash() {
@@ -65,6 +66,15 @@ export default function App() {
           element={
             <>
               <Galleri />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/vippeextensions"
+          element={
+            <>
+              <VippeextensionsPage />
               <Footer />
             </>
           }
