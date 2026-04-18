@@ -9,7 +9,7 @@ function ServiceCard({ service }: { service: ServiceItem }) {
     <article className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-[color:var(--color-gold)]/20 bg-[linear-gradient(160deg,rgba(15,15,17,0.98),rgba(9,9,11,0.95))] shadow-[0_22px_48px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--color-gold)]/45 hover:shadow-[0_28px_52px_rgba(0,0,0,0.52)]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(183,132,113,0.15),transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      <div className="relative h-44 overflow-hidden sm:h-48">
+      <div className="relative h-40 overflow-hidden sm:h-44 lg:h-36 xl:h-40">
         <img
           src={service.img}
           alt={service.title}
@@ -23,20 +23,20 @@ function ServiceCard({ service }: { service: ServiceItem }) {
         <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/55 to-transparent" />
       </div>
 
-      <div className="relative flex flex-1 flex-col px-6 pb-6 pt-5">
+      <div className="relative flex flex-1 flex-col px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 lg:px-5 lg:pb-5 lg:pt-4">
         <h3
-          className="text-[2rem] font-semibold leading-none tracking-[0.01em] text-white"
+          className="text-[1.72rem] font-semibold leading-none tracking-[0.01em] text-white sm:text-[1.9rem] lg:text-[1.56rem] xl:text-[1.7rem]"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
           {service.title}
         </h3>
-        <p className="mt-4 flex-1 text-[0.98rem] leading-[1.62] text-white/62">
+        <p className="mt-3.5 flex-1 text-[0.94rem] leading-[1.55] text-white/62 lg:line-clamp-2 xl:line-clamp-3">
           {service.description}
         </p>
 
         <Link
           to={ctaHref}
-          className="mt-6 inline-flex w-fit items-center gap-2 border-b border-[color:var(--color-gold)]/35 pb-1 text-[0.86rem] font-semibold tracking-[0.18em] text-[color:var(--color-gold)] transition-all duration-300 hover:border-[color:var(--color-gold)] hover:text-[#d9ab99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/45"
+          className="mt-4 inline-flex w-fit items-center gap-2 border-b border-[color:var(--color-gold)]/35 pb-1 text-[0.8rem] font-semibold tracking-[0.18em] text-[color:var(--color-gold)] transition-all duration-300 hover:border-[color:var(--color-gold)] hover:text-[#d9ab99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-gold)]/45 sm:mt-5 sm:text-[0.84rem] lg:mt-4"
         >
           Les Mer{" "}
           <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -78,22 +78,22 @@ export default function TjenesterSection() {
   return (
     <section
       id="tjenester"
-      className="flex min-h-screen flex-col justify-center px-10 py-16 sm:px-24 lg:px-16"
+      className="flex min-h-screen flex-col justify-center px-5 py-12 sm:px-10 sm:py-14 lg:min-h-[calc(100svh-4.5rem)] lg:justify-start lg:px-12 lg:py-6"
     >
       <div className="mx-auto w-full max-w-5xl">
-        <div className="mb-10 text-center">
-          <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
+        <div className="mb-6 text-center lg:mb-4">
+          <div className="mx-auto mb-3 h-px w-14 bg-[color:var(--color-gold)]/50" />
           <h2
-            className="text-xl font-light tracking-[0.15em] text-white text-wrap-balance sm:text-3xl md:text-4xl"
+            className="text-lg font-light tracking-[0.12em] text-white text-wrap-balance sm:text-[1.7rem] md:text-[2.05rem] lg:text-[2.35rem]"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Tjenester
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed tracking-wide text-white/55 sm:text-sm">
+          <p className="mx-auto mt-2 max-w-xl text-[0.72rem] leading-relaxed tracking-wide text-white/55 sm:text-[0.82rem] lg:max-w-[50rem] lg:text-[0.9rem] lg:leading-[1.4]">
             Vi spesialiserer oss på vippebehandlinger som fremhever din naturlige skjønnhet. Alle
             behandlinger utføres med høykvalitetsprodukter og omhu for ditt velvære.
           </p>
-          <div className="mx-auto mt-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
+          <div className="mx-auto mt-3 h-px w-14 bg-[color:var(--color-gold)]/50" />
         </div>
 
         <div className="sm:hidden">
@@ -167,7 +167,7 @@ export default function TjenesterSection() {
           </div>
         </div>
 
-        <div className="hidden gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3">
+        <div className="hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {services.map((service) => (
             <ServiceCard key={service.title} service={service} />
           ))}

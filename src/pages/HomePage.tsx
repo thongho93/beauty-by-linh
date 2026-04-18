@@ -15,8 +15,15 @@ export default function HomePage() {
       return;
     }
 
+    const header = document.querySelector("header");
+    const headerHeight = header instanceof HTMLElement ? header.getBoundingClientRect().height : 0;
+    const sectionTopOffset = 18;
+
     const startY = window.scrollY;
-    const targetY = target.getBoundingClientRect().top + window.scrollY;
+    const targetY = Math.max(
+      0,
+      target.getBoundingClientRect().top + window.scrollY - headerHeight - sectionTopOffset,
+    );
     const distance = targetY - startY;
     const duration = 1200;
 
