@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef, useState, type TouchEvent } from "react";
 
 const reviews = [
   // Page 1
@@ -157,10 +157,10 @@ export default function ReviewsSection() {
   const mobilePrev = () => setMobileIdx((i) => Math.max(0, i - 1));
   const mobileNext = () => setMobileIdx((i) => Math.min(reviews.length - 1, i + 1));
 
-  const onTouchStart = (e: React.TouchEvent) => {
+  const onTouchStart = (e: TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
-  const onTouchEnd = (e: React.TouchEvent) => {
+  const onTouchEnd = (e: TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) {
@@ -171,12 +171,15 @@ export default function ReviewsSection() {
   };
 
   return (
-    <section className="relative px-4 py-14 sm:px-6 sm:py-16 md:px-10 lg:px-16 lg:py-10 xl:py-8 min-h-screen flex flex-col justify-center">
+    <section
+      id="om"
+      className="relative flex min-h-screen flex-col justify-center px-4 py-14 sm:px-6 sm:py-16 md:px-10 lg:px-16 lg:py-10 xl:py-8"
+    >
       <div className="mx-auto max-w-6xl">
         {/* Heading */}
         <div className="mb-8 text-center lg:mb-8">
           <div className="mx-auto mb-4 h-px w-16 bg-[color:var(--color-gold)]/50" />
-          <h2 className="font-['Playfair_Display'] text-xl font-light tracking-[0.12em] text-white sm:text-3xl md:text-4xl lg:text-[2.35rem]">
+          <h2 className="font-['Playfair_Display'] text-xl font-light tracking-[0.12em] text-white text-wrap-balance sm:text-3xl md:text-4xl lg:text-[2.35rem]">
             Hva kundene sier
           </h2>
           <p className="mt-3 text-[10px] tracking-[0.15em] text-white/40 sm:text-sm sm:tracking-[0.25em]">
@@ -190,12 +193,11 @@ export default function ReviewsSection() {
           <div
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            style={{ animation: "fadeIn 0.3s ease" }}
+            className="animate-fade-up-in"
             key={mobileIdx}
           >
             <ReviewCard review={reviews[mobileIdx]} />
           </div>
-          <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
 
           {/* Mobile dots + arrows */}
           <div className="mt-6 flex items-center justify-center gap-3">

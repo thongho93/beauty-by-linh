@@ -1,32 +1,39 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import Header from "@/components/layout/Header";
 import BookingModal from "@/components/ui/BookingModal";
 import TjenesterSection from "@/components/sections/TjenesterSection";
 import GalleriSection from "@/components/sections/GalleriSection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
+import { useBookingModal } from "@/hooks/useBookingModal";
 
 export default function HomePage() {
-  const [bookingOpen, setBookingOpen] = useState(false);
+  const booking = useBookingModal();
 
-  const scrollToNextSlow = () => {
+  const scrollToServices = useCallback(() => {
     const target = document.getElementById("tjenester");
-    if (!target) return;
+    if (!target) {
+      return;
+    }
 
     const startY = window.scrollY;
     const targetY = target.getBoundingClientRect().top + window.scrollY;
     const distance = targetY - startY;
-    const duration = 1200; // ms – slow, luxury feel
+    const duration = 1200;
 
     let startTime: number | null = null;
 
-    const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    const easeInOut = (value: number) =>
+      value < 0.5 ? 2 * value * value : 1 - Math.pow(-2 * value + 2, 2) / 2;
 
     const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = easeInOut(progress);
+      if (!startTime) {
+        startTime = timestamp;
+      }
 
-      window.scrollTo(0, startY + distance * eased);
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easedProgress = easeInOut(progress);
+
+      window.scrollTo(0, startY + distance * easedProgress);
 
       if (progress < 1) {
         requestAnimationFrame(step);
@@ -34,41 +41,40 @@ export default function HomePage() {
     };
 
     requestAnimationFrame(step);
-  };
+  }, []);
 
   return (
     <main>
-      {bookingOpen ? <BookingModal onClose={() => setBookingOpen(false)} /> : null}
-      <Header onBookClick={() => setBookingOpen(true)} />
+      {booking.isOpen ? <BookingModal onClose={booking.close} /> : null}
+      <Header onBookClick={booking.open} />
+
       <section
         id="home"
-        className="relative overflow-hidden cursor-pointer bg-black"
+        className="relative cursor-pointer overflow-hidden bg-black"
         style={{ minHeight: "100svh" }}
         role="button"
         tabIndex={0}
-        onClick={() => scrollToNextSlow()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            scrollToNextSlow();
+        onClick={scrollToServices}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            scrollToServices();
           }
         }}
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 hero-img"
+          className="hero-img absolute inset-0"
           style={{
-            backgroundImage: "url('/img/Page cover/freepik-to-use-in-homepage.png')",
+            backgroundImage: "url('/img/Page cover/freepik-to-use-in-homepage.jpg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "auto 100%",
             backgroundPosition: "right center",
           }}
         />
-        {/* Uniform dim over the whole image */}
+
         <div className="absolute inset-0 bg-black/25" />
-        {/* Bottom fade to black — laptop+ only */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent hidden sm:block" />
-        {/* Blend left black into the image's natural dark background */}
+        <div className="absolute inset-x-0 bottom-0 hidden h-40 bg-gradient-to-t from-black to-transparent sm:block" />
         <div
           className="hero-gradient-lr absolute inset-0"
           style={{
@@ -78,71 +84,59 @@ export default function HomePage() {
         />
 
         <div
-          className="relative z-10 flex items-end sm:items-center px-8 sm:px-16 lg:pl-16 pb-16 sm:pb-0"
-          style={{ minHeight: "100svh" }}
-          onClick={(e) => e.stopPropagation()}
-          onKeyDown={(e) => e.stopPropagation()}
+          className="relative z-10 flex min-h-[100svh] items-end px-8 pb-16 sm:items-center sm:px-16 sm:pb-0 lg:pl-16"
+          onClick={(event) => event.stopPropagation()}
+          onKeyDown={(event) => event.stopPropagation()}
         >
-          <div className="w-full max-w-lg text-white flex flex-col items-center sm:items-start lg:-mt-[12vh]">
+          <div className="flex w-full max-w-lg flex-col items-center text-white sm:items-start lg:-mt-[12vh]">
             <img
               src="/img/logo-transparent.png"
               alt="Lashes by Linh Oslo"
-              className="w-52 sm:w-[300px] mb-5 sm:mb-6"
+              className="mb-5 w-52 sm:mb-6 sm:w-[300px]"
               style={{
                 filter:
                   "drop-shadow(0 0 12px rgba(183,107,80,0.4)) drop-shadow(0 0 30px rgba(183,107,80,0.2))",
               }}
+              width={300}
+              height={300}
+              fetchPriority="high"
             />
 
-            <div className="flex flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
+            <div className="flex flex-row justify-center gap-3 sm:justify-start sm:gap-4">
               <button
                 type="button"
-                onClick={() => setBookingOpen(true)}
-                className="w-[150px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-bl-lg rounded-br-lg rounded-tr-none border border-[color:var(--color-gold)] px-4 py-3 sm:px-4 sm:py-3 text-[11px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_20px_rgba(183,132,113,0.3)] active:scale-[0.98]"
+                onClick={booking.open}
+                className="w-[150px] whitespace-nowrap rounded-bl-lg rounded-br-lg rounded-tl-lg rounded-tr-none border border-[color:var(--color-gold)] px-4 py-3 text-[11px] tracking-[0.28em] text-[color:var(--color-gold)] transition-colors duration-300 hover:bg-[color:var(--color-gold)]/10 active:scale-[0.98] sm:w-[155px] sm:text-[11px] sm:tracking-[0.3em] lg:w-[175px]"
               >
-                Bestill time
+                Bestill Time
               </button>
-              <a
-                href="#tjenester"
-                className="w-[150px] sm:w-[155px] lg:w-[175px] whitespace-nowrap rounded-tl-lg rounded-tr-lg rounded-br-lg rounded-bl-none border border-white/35 px-4 py-3 sm:px-4 sm:py-3 text-center text-[11px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.3em] text-white/70 transition-all duration-300 hover:border-white/70 hover:text-white active:scale-[0.98]"
+              <button
+                type="button"
+                onClick={scrollToServices}
+                className="w-[150px] whitespace-nowrap rounded-bl-none rounded-br-lg rounded-tl-lg rounded-tr-lg border border-white/35 px-4 py-3 text-center text-[11px] tracking-[0.28em] text-white/70 transition-colors duration-300 hover:border-white/70 hover:text-white active:scale-[0.98] sm:w-[155px] sm:text-[11px] sm:tracking-[0.3em] lg:w-[175px]"
               >
                 Tjenester
-              </a>
+              </button>
             </div>
           </div>
         </div>
 
         <button
           type="button"
-          aria-label="Scroll to next section"
-          onClick={(e) => {
-            e.stopPropagation();
-            scrollToNextSlow();
+          aria-label="Scroll til neste seksjon"
+          onClick={(event) => {
+            event.stopPropagation();
+            scrollToServices();
           }}
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 bg-transparent border-none text-[color:var(--color-gold)]/80 transition-all duration-300 hover:text-white hover:bg-transparent hover:shadow-none hover:scale-110 active:scale-95 cursor-pointer hidden sm:block"
+          className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 border-none bg-transparent text-2xl text-[color:var(--color-gold)]/80 transition-colors duration-300 hover:text-white active:scale-95 sm:block"
         >
-          <div
-            className="text-2xl transition-colors duration-300 hover:text-[color:var(--color-gold)]"
-            style={{ animation: "floatY 2s ease-in-out infinite" }}
-          >
-            ↓
-          </div>
+          <span className="animate-float-y inline-block">↓</span>
         </button>
       </section>
 
       <TjenesterSection />
-
       <GalleriSection />
       <ReviewsSection />
-      <style>
-        {`
-@keyframes floatY {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-            100% { transform: translateY(0); }
-          }
-        `}
-      </style>
     </main>
   );
 }

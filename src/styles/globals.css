@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -7,8 +8,13 @@
 }
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   html {
-    font-family: Inter, system-ui, sans-serif;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    scroll-behavior: smooth;
   }
 
   html,
@@ -19,6 +25,13 @@
   h1 {
     letter-spacing: 0.15em;
   }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   h2,
   h3 {
     font-family: "Playfair Display", serif;
@@ -28,45 +41,38 @@
     min-height: 100%;
     background-color: var(--color-dark);
     color: var(--color-light);
+    overflow-x: hidden;
   }
 
-  /* Global luxury background image */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -2;
-
     background-image: url("/img/luxury-background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    /* Subtle luxury tuning */
     filter: saturate(1) contrast(1.05) brightness(0.9);
     transform: scale(1.03);
   }
 
-  /* Dark overlay for readability */
   body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-
     background:
       radial-gradient(circle at 30% 10%, rgba(200, 169, 106, 0.08), rgba(0, 0, 0, 0.65)),
       linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
-
     pointer-events: none;
   }
+
   button {
     letter-spacing: 0.2em;
     cursor: pointer;
-    transition: box-shadow 0.3s ease;
-  }
-  button:hover {
-    box-shadow: 0 0 20px rgba(183, 132, 113, 0.4);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(183, 132, 113, 0.2);
   }
 
   a,
@@ -76,62 +82,127 @@
   summary {
     cursor: pointer;
   }
+
+  :focus-visible {
+    outline: 2px solid rgba(183, 132, 113, 0.5);
+    outline-offset: 2px;
+  }
 }
 
-/* Hero image responsive positioning */
+@layer utilities {
+  .animate-fade-up-in {
+    animation: fadeUpIn 0.3s ease;
+  }
 
-/* Tablet large (951px–1023px): content centered on left, image pinned right center */
+  .animate-float-y {
+    animation: floatY 2s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatY {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media (min-width: 951px) and (max-width: 1023px) {
   .hero-img {
     background-position: right center !important;
     background-size: auto 100% !important;
   }
+
   .hero-gradient-lr {
     background: linear-gradient(
       to right,
-      #000 0%, #000 20%, rgba(0,0,0,0.6) 38%, rgba(0,0,0,0.15) 55%, transparent 70%
+      #000 0%,
+      #000 20%,
+      rgba(0, 0, 0, 0.6) 38%,
+      rgba(0, 0, 0, 0.15) 55%,
+      transparent 70%
     ) !important;
   }
 }
 
-/* Tablet mid (800px–950px): heavier dim so logo/buttons pop */
 @media (min-width: 800px) and (max-width: 950px) {
   .hero-img {
     background-position: right center !important;
     background-size: auto 100% !important;
   }
+
   .hero-gradient-lr {
     background: linear-gradient(
       to right,
-      #000 0%, #000 22%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0.15) 82%, transparent 100%
+      #000 0%,
+      #000 22%,
+      rgba(0, 0, 0, 0.6) 48%,
+      rgba(0, 0, 0, 0.35) 65%,
+      rgba(0, 0, 0, 0.15) 82%,
+      transparent 100%
     ) !important;
   }
 }
 
-/* Tablet small (640px–799px): content at bottom, image shifts up to show face */
 @media (min-width: 640px) and (max-width: 799px) {
   .hero-img {
     background-position: center 20% !important;
     background-size: auto 100% !important;
   }
+
   .hero-gradient-lr {
     background: linear-gradient(
       to bottom,
-      rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 72%, #000 82%
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.8) 72%,
+      #000 82%
     ) !important;
   }
 }
 
-/* Mobile: image fills top 72% of viewport, face prominent near top */
 @media (max-width: 639px) {
   .hero-img {
     background-position: center top !important;
     background-size: auto 65% !important;
   }
+
   .hero-gradient-lr {
     background: linear-gradient(
       to bottom,
-      rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.75) 55%, #000 65%
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.2) 35%,
+      rgba(0, 0, 0, 0.75) 55%,
+      #000 65%
     ) !important;
   }
 }

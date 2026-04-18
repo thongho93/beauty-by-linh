@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# Beauty by Linh
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lashes studio website built with React + Vite + TypeScript.
 
-Currently, two official plugins are available:
+## What is included
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Multi-page SPA experience with React Router (`/`, `/tjenester`, `/priser`, `/galleri`, `/vippeextensions`)
+- Booking modal (Timma iframe)
+- Stripe Payment Link support on the pricing page (optional)
+- Supabase contact capture from footer form (optional)
+- Deployment-ready SPA rewrites for Vercel (`vercel.json`)
 
-## React Compiler
+## Local development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Build production bundle:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm run build
+npm run preview
 ```
+
+## Environment setup
+
+Copy `.env.example` to `.env.local` and fill in values you want to enable.
+
+```bash
+cp .env.example .env.local
+```
+
+### Stripe (optional)
+
+The pricing page can show direct deposit checkout buttons using Stripe Payment Links.
+
+- `VITE_STRIPE_PAYMENT_LINK_NEW_SET`
+- `VITE_STRIPE_PAYMENT_LINK_REFILL`
+- `VITE_STRIPE_PAYMENT_LINK_LIFT`
+
+If these are empty, the UI falls back to standard booking text.
+
+### Supabase contact form (optional)
+
+Footer form will insert submissions into Supabase when these are set:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `VITE_SUPABASE_CONTACT_TABLE` (default: `contact_messages`)
+
+If not configured, the form falls back to opening a pre-filled `mailto:` draft.
+
+Apply the table/policy SQL from:
+
+- `supabase/contact_messages.sql`
+
+## Deploy (Vercel)
+
+1. Build passes locally:
+
+```bash
+npm run build
+```
+
+2. Deploy preview:
+
+```bash
+vercel deploy
+```
+
+3. Deploy production (only when ready):
+
+```bash
+vercel deploy --prod
+```
+
+The project includes `vercel.json` SPA rewrite rules so route refreshes continue to work.
