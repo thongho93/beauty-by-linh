@@ -28,8 +28,8 @@ const services = [
     title: "Vippeløft",
     description:
       "Løft og krum dine naturlige vipper for en åpen, frisk effekt som varer i 6–8 uker. En elegant behandling som fremhever det du allerede har.",
-    img: "/img/lashes-by-linh-1.jpg",
-    imgPosition: "center 10%",
+    img: "/img/instagram/7.jpg",
+    imgPosition: "center 36%",
     details: ["Vippeløft", "Vippeløft med farging"],
   },
 ];
@@ -127,41 +127,36 @@ export default function Tjenester() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group flex flex-col overflow-hidden rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-none border border-[color:var(--color-gold)]/20 bg-[#1a1412] transition-all duration-300 hover:border-[color:var(--color-gold)]/50 hover:shadow-[0_0_32px_rgba(183,132,113,0.2)]"
+                className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-[color:var(--color-gold)]/20 bg-[linear-gradient(160deg,rgba(15,15,17,0.98),rgba(9,9,11,0.95))] shadow-[0_22px_48px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--color-gold)]/45 hover:shadow-[0_28px_52px_rgba(0,0,0,0.52)]"
               >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(183,132,113,0.15),transparent_55%)]" />
                 {/* Image */}
-                <div className="m-3 h-56 overflow-hidden rounded-xl sm:h-60 lg:h-64">
+                <div className="relative h-44 overflow-hidden sm:h-48">
                   <img
                     src={service.img}
                     alt={service.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     style={{ objectPosition: service.imgPosition }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                  <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/55 to-transparent" />
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-1 flex-col px-5 pb-6 pt-3 sm:px-6 sm:pb-8 sm:pt-4">
+                <div className="relative flex flex-1 flex-col px-6 pb-6 pt-5">
                   <h3
-                    className="text-[1.7rem] font-bold sm:text-2xl"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      background: "linear-gradient(135deg, #D4A898 0%, #B78471 50%, #8B5E52 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      display: "inline-block",
-                      paddingBottom: "0.1em",
-                    }}
+                    className="text-[2rem] font-semibold leading-none tracking-[0.01em] text-white"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     {service.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-[0.98rem] leading-7 text-white/75 sm:mt-4 sm:text-base">
+                  <p className="mt-4 flex-1 text-[0.98rem] leading-[1.62] text-white/62">
                     {service.description}
                   </p>
                   <button
                     type="button"
                     onClick={() => setBookingOpen(true)}
-                    className="mt-5 flex w-fit items-center gap-1.5 text-sm font-bold text-[color:var(--color-gold)] transition-opacity duration-200 hover:opacity-70 hover:shadow-none sm:mt-6"
+                    className="mt-6 inline-flex w-fit items-center gap-2 border-b border-[color:var(--color-gold)]/35 pb-1 text-[0.86rem] font-semibold tracking-[0.18em] text-[color:var(--color-gold)] transition-all duration-300 hover:border-[color:var(--color-gold)] hover:text-[#d9ab99] hover:shadow-none"
                   >
                     Les mer{" "}
                     <span className="transition-transform duration-200 group-hover:translate-x-1">

@@ -65,13 +65,13 @@ const totalPages = Math.ceil(reviews.length / PER_PAGE);
 
 function Stars({ count }: { count: number }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex items-center gap-1">
       {Array.from({ length: count }).map((_, i) => (
         <svg
           key={i}
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="h-3.5 w-3.5 text-[color:var(--color-gold)]"
+          className="h-4 w-4 text-[color:var(--color-gold)] drop-shadow-[0_0_8px_rgba(183,132,113,0.35)] sm:h-3.5 sm:w-3.5"
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
@@ -110,29 +110,31 @@ function ChevronRight() {
 
 function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
   return (
-    <div className="flex h-full flex-col rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-none border border-white/6 bg-[#111] px-4 pt-4 pb-6 lg:px-4 lg:pt-4 lg:pb-6 transition-all duration-300 hover:border-[color:var(--color-gold)]/25 hover:shadow-[0_0_24px_rgba(183,132,113,0.07)]">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-[1.85rem] border border-[color:var(--color-gold)]/20 bg-[linear-gradient(165deg,rgba(14,14,17,0.98),rgba(8,8,10,0.96))] px-5 pb-7 pt-5 shadow-[0_20px_46px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--color-gold)]/40 hover:shadow-[0_28px_58px_rgba(0,0,0,0.55)] sm:px-5 sm:pb-6 sm:pt-5">
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(183,132,113,0.12),transparent_58%)]" />
+      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/55 to-transparent" />
       <span
-        className="mb-1 block text-2xl leading-none text-[color:var(--color-gold)]/30"
+        className="mb-2 block text-4xl leading-none text-[color:var(--color-gold)]/26 sm:text-3xl"
         style={{ fontFamily: "'Playfair Display', serif" }}
       >
         "
       </span>
       <Stars count={review.stars} />
-      <div className="mt-2 h-[9.5rem] overflow-y-auto pr-1 text-[0.8rem] leading-6 text-white/65 lg:h-[11rem]">
+      <div className="mt-4 h-[12.5rem] overflow-y-auto pr-1.5 text-[1.02rem] leading-[1.86] text-white/76 sm:h-[12rem] sm:text-[0.92rem] sm:leading-7 lg:h-[13rem] lg:text-[0.95rem]">
         <p>{review.text}</p>
       </div>
-      <div className="mt-4">
-        <div className="my-3 h-px bg-white/8" />
+      <div className="mt-6">
+        <div className="my-3 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
         <p
-          className="text-[0.95rem] lg:text-[1rem] font-medium leading-none tracking-wide text-white/90"
+          className="text-[2rem] sm:text-[1.35rem] lg:text-[1.55rem] font-medium leading-none tracking-[0.01em] text-white/92"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
           {review.name}
         </p>
         {review.service && (
           <p
-            className="mt-1 text-[5px] leading-[1.7] tracking-[0.12em] text-white/30 lg:text-[0.3rem] xl:text-[0.38rem]"
-            style={{ minHeight: "4.2em" }}
+            className="mt-2 text-[0.7rem] leading-[1.65] tracking-[0.2em] text-[color:var(--color-gold)]/55 sm:text-[0.56rem] lg:text-[0.62rem]"
+            style={{ minHeight: "3.6em" }}
           >
             {review.service.toUpperCase()}
           </p>
@@ -300,7 +302,7 @@ export default function ReviewsSection() {
         {/* Link to Timma */}
         <div className="mt-8 text-center lg:mt-7">
           <a
-            href="https://timma.no/salong/lashes-by-linh#:~:text=today%2008%3A00-,Reviews,-(100)"
+            href="https://timma.no/salong/lashes-by-linh#:~:text=Reviews,-(100)"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-[color:var(--color-gold)] px-8 py-2.5 text-[0.72rem] tracking-[0.26em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_16px_rgba(183,132,113,0.25)] hover:scale-[1.03] active:scale-[0.98] lg:px-10 lg:py-3 lg:text-xs lg:tracking-[0.3em]"
