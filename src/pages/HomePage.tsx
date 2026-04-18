@@ -73,7 +73,7 @@ export default function HomePage() {
           className="hero-gradient-lr absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, #000 0%, #000 25%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.15) 55%, transparent 70%)",
+              "linear-gradient(to right, #000 0%, #000 15%, rgba(0,0,0,0.88) 26%, rgba(0,0,0,0.65) 38%, rgba(0,0,0,0.35) 52%, rgba(0,0,0,0.1) 65%, transparent 76%)",
           }}
         />
 

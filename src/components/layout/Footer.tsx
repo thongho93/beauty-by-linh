@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Container from "@/components/layout/Container";
 
 const footerLinks: Array<{
@@ -7,8 +8,9 @@ const footerLinks: Array<{
   {
     title: "TJENNESTER",
     items: [
-      { label: "Vipper", href: "#tjenester" },
-      { label: "Bryn", href: "#tjenester" },
+      { label: "Vippeextensions", href: "#tjenester" },
+      { label: "Farging av vipper", href: "#tjenester" },
+      { label: "Vippeløft", href: "#tjenester" },
     ],
   },
   {
@@ -52,6 +54,17 @@ function SocialIcon({
 }
 
 export default function Footer() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Henvendelse fra ${name}`);
+    const body = encodeURIComponent(`Fra: ${name}\nE-post: ${email}\n\n${message}`);
+    window.open(`mailto:nguyentruclinh.hcm@gmail.com?subject=${subject}&body=${body}`);
+  };
+
   return (
     <footer className="mt-20 border-t border-white/10 bg-[color:var(--color-dark)] text-[color:var(--color-light)]">
       <Container>
@@ -82,25 +95,50 @@ export default function Footer() {
 
           <div className="mt-14">
             <div className="text-sm tracking-[0.2em] text-[color:var(--color-gold)]/75">
-              Meld deg på nyheter
+              SEND OSS EN MELDING
             </div>
 
-            <form
-              className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <label className="w-full">
-                <span className="sr-only">E-post</span>
+            <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-4 max-w-lg">
+              <label className="flex flex-col gap-1">
+                <span className="text-xs tracking-[0.15em] text-white/50">Navn</span>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ditt navn"
+                  className="w-full border-b border-[color:var(--color-gold)]/35 bg-transparent px-0 py-2.5 text-[color:var(--color-light)] placeholder:text-white/30 focus:outline-none focus:border-[color:var(--color-gold)]"
+                />
+              </label>
+
+              <label className="flex flex-col gap-1">
+                <span className="text-xs tracking-[0.15em] text-white/50">E-post</span>
                 <input
                   type="email"
-                  placeholder="Skriv inn e-post"
-                  className="w-full border-b border-[color:var(--color-gold)]/35 bg-transparent px-0 py-3 text-[color:var(--color-light)] placeholder:text-white/40 focus:outline-none focus:border-[color:var(--color-gold)]"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Din e-postadresse"
+                  className="w-full border-b border-[color:var(--color-gold)]/35 bg-transparent px-0 py-2.5 text-[color:var(--color-light)] placeholder:text-white/30 focus:outline-none focus:border-[color:var(--color-gold)]"
+                />
+              </label>
+
+              <label className="flex flex-col gap-1">
+                <span className="text-xs tracking-[0.15em] text-white/50">Melding</span>
+                <textarea
+                  required
+                  rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Skriv din melding her..."
+                  className="w-full resize-none border-b border-[color:var(--color-gold)]/35 bg-transparent px-0 py-2.5 text-[color:var(--color-light)] placeholder:text-white/30 focus:outline-none focus:border-[color:var(--color-gold)]"
                 />
               </label>
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center border border-[color:var(--color-gold)] bg-transparent px-6 py-3 text-sm tracking-[0.2em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_0_3px_rgba(183,132,113,0.12)] active:scale-[0.99]"
+                disabled={!name.trim() || !email.trim() || !message.trim()}
+                className="mt-1 self-start inline-flex items-center justify-center border border-[color:var(--color-gold)] bg-transparent px-6 py-3 text-sm tracking-[0.2em] text-[color:var(--color-gold)] transition-all duration-300 hover:bg-[color:var(--color-gold)]/10 hover:shadow-[0_0_0_3px_rgba(183,132,113,0.12)] active:scale-[0.99] disabled:opacity-35 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:shadow-none"
               >
                 Send <span className="ml-3 text-lg leading-none">→</span>
               </button>
@@ -138,15 +176,6 @@ export default function Footer() {
                 </svg>
               </SocialIcon>
 
-              <SocialIcon href="https://facebook.com/" label="Facebook">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M14 8.5V7.3c0-.9.6-1.3 1.2-1.3h1.8V3h-2.6C12.4 3 11 4.6 11 6.8V8.5H9v3h2V21h3v-9.5h2.4l.6-3H14Z"
-                    fill="currentColor"
-                    opacity="0.9"
-                  />
-                </svg>
-              </SocialIcon>
             </div>
           </div>
         </div>
